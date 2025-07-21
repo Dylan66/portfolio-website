@@ -1,5 +1,5 @@
 <h2 align="center">
-  Portfolio Website - v2.0<br/>
+  Dealan's Portfolio Website<br/>
  
 </h2>
 
@@ -13,7 +13,6 @@
 
 ## TL;DR
 
-You can fork this repo to modify and make changes of your own. Please give proper credit by linking back to [Dylan66](https://github.com/Dylan66). Thanks!
 
 ## Built With
 
