@@ -3,33 +3,34 @@ import { Form, Button, Alert, Container, Row, Col, InputGroup } from "react-boot
 import { FaUser, FaEnvelope, FaCommentDots } from "react-icons/fa";
 
 function Contact() {
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
-  const [error, setError] = useState("");
 
-  // Basic email validation
-  const validateEmail = (email) => {
-    return /\S+@\S+\.\S+/.test(email);
-  };
+  const FORMSPREE_ENDPOINT = "https://formspree.io/f/xgvzoqky";
 
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-    setError("");
-  };
-
-  const handleSubmit = (e) => {
+  // Handle Formspree response
+  const handleFormspreeResponse = (e) => {
     e.preventDefault();
-    if (!form.name || !form.email || !form.message) {
-      setError("All fields are required.");
-      return;
-    }
-    if (!validateEmail(form.email)) {
-      setError("Please enter a valid email address.");
-      return;
-    }
-    // Here you would send the form data to your email or backend
-    setSubmitted(true);
-    setForm({ name: "", email: "", message: "" });
+    const form = e.target;
+    fetch(FORMSPREE_ENDPOINT, {
+      method: "POST",
+      body: new FormData(form),
+      headers: {
+        Accept: "application/json",
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          setSubmitted(true);
+          form.reset();
+        } else {
+          response.json().then((data) => {
+            alert(data.errors ? data.errors.map(e => e.message).join(", ") : "Something went wrong.");
+          });
+        }
+      })
+      .catch(() => {
+        alert("There was a problem submitting your form.");
+      });
   };
 
   return (
@@ -39,8 +40,7 @@ function Contact() {
           <div className="contact-card p-4 shadow rounded bg-white">
             <h2 className="mb-4 text-center fw-bold" style={{ letterSpacing: 1 }}>Contact Me</h2>
             {submitted && <Alert variant="success">Message sent!</Alert>}
-            {error && <Alert variant="danger">{error}</Alert>}
-            <Form onSubmit={handleSubmit} autoComplete="off" noValidate>
+            <Form onSubmit={handleFormspreeResponse} autoComplete="off" noValidate>
               <Form.Group controlId="formName" className="mb-3">
                 <Form.Label className="fw-semibold">Name</Form.Label>
                 <InputGroup>
@@ -48,8 +48,6 @@ function Contact() {
                   <Form.Control
                     type="text"
                     name="name"
-                    value={form.name}
-                    onChange={handleChange}
                     required
                     placeholder="Enter your name"
                     minLength={2}
@@ -65,8 +63,6 @@ function Contact() {
                   <Form.Control
                     type="email"
                     name="email"
-                    value={form.email}
-                    onChange={handleChange}
                     required
                     placeholder="Enter your email"
                     minLength={5}
@@ -83,8 +79,6 @@ function Contact() {
                     as="textarea"
                     name="message"
                     rows={5}
-                    value={form.message}
-                    onChange={handleChange}
                     required
                     placeholder="Type your message here..."
                     minLength={10}
