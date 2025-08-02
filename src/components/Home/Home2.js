@@ -21,34 +21,34 @@ function Home2() {
             <p className="home-about-body">
               I am passionate about technology and all the potential it has to change society. 
                             <br />
-              <br />I am fluent in classics like
-              <i>
-                <b className="purple"> Python, Javascript and Java. </b>
-              </i>
+              <br />I am competent in high level programming languages like
+            
+                <b className="purple"> Python, Javascript and Go. </b>
+              
               <br />
               <br />
-              My field of Interest's are building new &nbsp;
-              <i>
-                <b className="purple">Web Technologies and Products </b> and
-                also in areas related to{" "}
+              My field of Interest's are building frontend and backend &nbsp;
+              
+                <b className="purple">Web Technologies and Products. </b>
+                Also I have a keen interest in {" "}
                 <b className="purple">
-                  Blockchain.
+                  Blockchain smart contract development.
                 </b>
-              </i>
+         
               <br />
               <br />
-              Whenever possible, I also apply my passion for developing products
-              with <b className="purple">Node.js</b> and
-              <i>
+              I also apply my passion for developing products
+              with <b className="purple">Python web framweokrs such as Fast Api and Django</b> and
+            
                 <b className="purple">
                   {" "}
-                  Modern Javascript Library and Frameworks
+                  Javascript Library and Frameworks
                 </b>
-              </i>
+              
               &nbsp; like
-              <i>
-                <b className="purple"> React.js and Next.js</b>
-              </i>
+              
+                <b className="purple"> React, Vue and Next.js</b>
+              
             </p>
           </Col>
           <Col md={4} className="myAvtar">
