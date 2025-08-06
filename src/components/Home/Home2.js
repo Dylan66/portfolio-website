@@ -19,36 +19,23 @@ function Home2() {
               LET ME <span className="purple"> INTRODUCE </span> MYSELF
             </h1>
             <p className="home-about-body">
-              I am passionate about technology and all the potential it has to change society. 
-                            <br />
-              <br />I am competent in high level programming languages like
-            
-                <b className="purple"> Python, Javascript and Go. </b>
-              
+              I am passionate about technology and all the potential it has to change society.
               <br />
               <br />
-              My field of Interest's are building frontend and backend &nbsp;
-              
-                <b className="purple">Web Technologies and Products. </b>
-                Also I have a keen interest in {" "}
-                <b className="purple">
-                  Blockchain smart contract development.
-                </b>
-         
+              I am competent in high-level programming languages like
+              <b className="purple"> Python, JavaScript, and Go. </b>
               <br />
               <br />
-              I also apply my passion for developing products
-              with <b className="purple">Python web framweokrs such as Fast Api and Django</b> and
-            
-                <b className="purple">
-                  {" "}
-                  Javascript Library and Frameworks
-                </b>
-              
-              &nbsp; like
-              
-                <b className="purple"> React, Vue and Next.js</b>
-              
+              My fields of interest are building frontend and backend
+              <b className="purple"> Web Technologies and Products. </b>
+              I also have a keen interest in
+              <b className="purple"> Blockchain smart contract development.</b>
+              <br />
+              <br />
+              I apply my passion for developing products with Python web frameworks such as <b className="purple">FastAPI and Django</b> and
+              JavaScript Libraries and Frameworks
+              &nbsp;like
+              <b className="purple"> React, Vue, and Next.js</b>
             </p>
           </Col>
           <Col md={4} className="myAvtar">
@@ -86,7 +73,7 @@ function Home2() {
               </li>
               <li className="social-icons">
                 <a
-                  href="https://https://www.linkedin.com/in/dylan-wanganga/"
+                  href="https://www.linkedin.com/in/dylan-wanganga/"
                   target="_blank"
                   rel="noreferrer"
                   className="icon-colour  home-social-icons"
