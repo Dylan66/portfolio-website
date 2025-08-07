@@ -105,7 +105,7 @@ function NavBar() {
 
             <Nav.Item>
               <Nav.Link
-                href="https://www.linkedin.com/in/dylan-wanganga/"
+                href="https://syntaxnsoul.hashnode.dev/"
                 target="_blank"
                 rel="noreferrer"
               >

@@ -34,12 +34,12 @@ function Projects() {
 
           <Col md={4} className="project-card">
             <ProjectCard
-              imgPath={bitsOfCode}
+              imgPath={bitsOfCode} // Consider updating this to a Sahal Medical image if available
               isBlog={false}
-              title="Bits-0f-C0de"
-              description="My personal blog page build with Next.js and Tailwind Css which takes the content from makdown files and renders it using Next.js. Supports dark mode and easy to write blogs using markdown."
-              ghLink="https://github.com/soumyajit4419/Bits-0f-C0de"
-              demoLink="https://blogs.soumya-jit.tech/"
+              title="Sahal Medical"
+              description="A modern, responsive web app for a medical service provider. Built with React, Vite, and Tailwind CSS, it features online appointment booking, service browsing, and a clean, fast user experience."
+              ghLink="https://github.com/Dylan66/sahal_web"
+              demoLink="https://sahal-web-dylan66s-projects.vercel.app/#home"
             />
           </Col>
 
