@@ -45,12 +45,12 @@ function Projects() {
 
           <Col md={4} className="project-card">
             <ProjectCard
-              imgPath={editor}
+              imgPath={editor} // Consider updating this to a Period Relief Project image if available
               isBlog={false}
-              title="Editor.io"
-              description="Online code and markdown editor build with react.js. Online Editor which supports html, css, and js code with instant view of website. Online markdown editor for building README file which supports GFM, Custom Html tags with toolbar and instant preview.Both the editor supports auto save of work using Local Storage"
-              ghLink="https://github.com/soumyajit4419/Editor.io"
-              demoLink="https://editor.soumya-jit.tech/"              
+              title="Period Relief Project"
+              description="A web app to track and showcase the impact of menstrual product distribution. Features a metrics dashboard with real-time stats on individuals supported, products distributed, and active centers. Built with React and designed to increase transparency in the fight against period poverty."
+              ghLink="https://github.com/Dylan66/PP-Relief-platform"
+              demoLink="https://pp-relief-platform-cg1m.vercel.app/"
             />
           </Col>
 
