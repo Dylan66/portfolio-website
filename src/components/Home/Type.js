@@ -6,12 +6,12 @@ function Type() {
     <Typewriter
       options={{
         strings: [
-          "A Software Engineer competent in",
+          "I specialize in",
           "Python, FastAPI, Django, Flask",
           "AWS Solutions Architecting",
           "DevOps",
           "Golang",
-          "JavaScript, React, Next.js",
+          "JavaScript, React, Nextjs",
           "Open Source Contributor",
         ],
         autoStart: true,
