@@ -1,8 +1,9 @@
 FROM node:18-alpine AS build
 WORKDIR /app
 COPY package.json package-lock.json ./
-RUN npm install
+RUN npm install --ignore-scripts
 COPY . .
+RUN npm run optimize-images && npm run update-image-refs
 RUN npm run build
 #step 2 build
 FROM nginx:alpine

@@ -9,4 +9,6 @@ services:
     volumes:
       - .:/app
       - /app/node_modules
+    stdin_open: true
+    tty: true
     container_name: portfolio-frontend-dev
