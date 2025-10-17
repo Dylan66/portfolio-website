@@ -6,13 +6,16 @@ import { Section } from '@/components/layout'
 import { Button } from '@/components/ui'
 import { portfolioData } from '@/data/portfolio'
 
-// Lazy load ParticleBackground for better performance
+// Lazy load ParticleBackground for better performance with optimized loading state
 const ParticleBackground = dynamic(
   () => import('@/components/ui/ParticleBackground'),
   { 
     ssr: false,
     loading: () => (
-      <div className="absolute inset-0 bg-gradient-to-br from-primary-900/20 via-transparent to-secondary-900/10 pointer-events-none" />
+      <div 
+        className="absolute inset-0 bg-gradient-to-br from-primary-900/20 via-transparent to-secondary-900/10 pointer-events-none"
+        aria-label="Loading background animation"
+      />
     )
   }
 )

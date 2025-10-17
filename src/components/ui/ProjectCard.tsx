@@ -5,7 +5,7 @@ import Image from 'next/image'
 import { Project } from '@/types'
 import { Button } from './Button'
 import { Card } from './Card'
-import { cn } from '@/lib/utils'
+import { cn, getImageSizes } from '@/lib/utils'
 
 interface ProjectCardProps {
   project: Project
@@ -46,8 +46,9 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
             height={primaryImage.height}
             className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110"
             placeholder={primaryImage.placeholder || 'blur'}
-            blurDataURL={primaryImage.blurDataURL || '/images/placeholder-blur.jpg'}
-            sizes={isListView ? '(max-width: 768px) 100vw, 40vw' : '(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw'}
+            blurDataURL={primaryImage.blurDataURL}
+            sizes={getImageSizes('project')}
+            loading="lazy"
           />
         ) : (
           <div className="flex items-center justify-center h-full">
@@ -56,14 +57,14 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
             </span>
           </div>
         )}
-        
+
         {/* Status Badge */}
         {project.status === 'in-progress' && (
           <div className="absolute top-4 right-4 px-3 py-1 bg-accent-amber/90 backdrop-blur-sm text-neutral-900 text-xs font-semibold rounded-full">
             In Progress
           </div>
         )}
-        
+
         {project.featured && (
           <div className="absolute top-4 left-4 px-3 py-1 bg-primary-600/90 backdrop-blur-sm text-white text-xs font-semibold rounded-full">
             Featured

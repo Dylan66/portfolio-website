@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 import { Inter, JetBrains_Mono } from 'next/font/google'
 import Navigation from '@/components/navigation/Navigation'
+import { WebVitals } from './web-vitals'
 import './globals.css'
 
 const inter = Inter({ 
@@ -48,6 +49,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`}>
       <body className={inter.className}>
+        <WebVitals />
         <Navigation />
         {children}
       </body>
