@@ -1,96 +1,173 @@
 'use client'
 
+import { useState, useMemo } from 'react'
 import { Section, Grid } from '@/components/layout'
-import { Card, Button } from '@/components/ui'
+import { ProjectCard } from '@/components/ui'
+import { portfolioData } from '@/data/portfolio'
+import { ProjectCategory } from '@/types'
+import { cn, debounce } from '@/lib/utils'
 
-const projects = [
-  {
-    id: 1,
-    title: "Sahal Medical",
-    description: "A modern, responsive web app for a medical service provider. Built with React, Vite, and Tailwind CSS, it features online appointment booking, service browsing, and a clean, fast user experience.",
-    technologies: ["React", "Vite", "Tailwind CSS", "JavaScript"],
-    demoLink: "https://sahal-web-dylan66s-projects.vercel.app/#home",
-    githubLink: "https://github.com/Dylan66/sahal_web"
-  },
-  {
-    id: 2,
-    title: "Period Relief Project",
-    description: "A web app to track and showcase the impact of menstrual product distribution. Features a metrics dashboard with real-time stats on individuals supported, products distributed, and active centers.",
-    technologies: ["React", "JavaScript", "Dashboard", "Analytics"],
-    demoLink: "https://pp-relief-platform-cg1m.vercel.app/",
-    githubLink: "https://github.com/Dylan66/PP-Relief-platform"
-  },
-  {
-    id: 3,
-    title: "Chatify",
-    description: "Personal Chat Room or Workspace to share resources and hangout with friends. Built with React.js, Material-UI, and Firebase. Features realtime messaging, image sharing and message reactions.",
-    technologies: ["React", "Material-UI", "Firebase", "Real-time"],
-    demoLink: "https://chatify-49.web.app/",
-    githubLink: "https://github.com/soumyajit4419/Chatify"
-  },
-  {
-    id: 4,
-    title: "Plant AI",
-    description: "Image classifier model using PyTorch framework with CNN and Transfer Learning. Successfully detects diseased and healthy leaves of 14 unique plants with 98% accuracy using Resnet34.",
-    technologies: ["PyTorch", "CNN", "Transfer Learning", "Python"],
-    demoLink: "https://plant49-ai.herokuapp.com/",
-    githubLink: "https://github.com/soumyajit4419/Plant_AI"
-  },
-  {
-    id: 5,
-    title: "AI For Social Good",
-    description: "Using Natural Language Processing for the detection of suicide-related posts and user's suicide ideation in cyberspace, helping in suicide prevention through AI-powered analysis.",
-    technologies: ["NLP", "Python", "Machine Learning", "Social Impact"],
-    githubLink: "https://github.com/soumyajit4419/AI_For_Social_Good"
-  },
-  {
-    id: 6,
-    title: "Face Recognition & Emotion Detection",
-    description: "CNN classifier trained using FER-2013 dataset with Keras and TensorFlow. Successfully predicts various human emotions with 60.1% accuracy, using OpenCV for face detection.",
-    technologies: ["CNN", "Keras", "TensorFlow", "OpenCV"],
-    githubLink: "https://github.com/soumyajit4419/Face_And_Emotion_Detection"
-  }
+const categories: { label: string; value: ProjectCategory | 'all' }[] = [
+  { label: 'All', value: 'all' },
+  { label: 'Web Apps', value: 'web-app' },
+  { label: 'Mobile Apps', value: 'mobile-app' },
+  { label: 'Tools', value: 'tool' },
+  { label: 'Libraries', value: 'library' },
+  { label: 'Design', value: 'design' }
 ]
 
 export default function Projects() {
+  const [selectedCategory, setSelectedCategory] = useState<ProjectCategory | 'all'>('all')
+  const [searchQuery, setSearchQuery] = useState('')
+  const [isAnimating, setIsAnimating] = useState(false)
+
+  // Filter projects based on category and search query
+  const filteredProjects = useMemo(() => {
+    let filtered = portfolioData.projects
+
+    // Filter by category
+    if (selectedCategory !== 'all') {
+      filtered = filtered.filter(project => project.category === selectedCategory)
+    }
+
+    // Filter by search query
+    if (searchQuery.trim()) {
+      const query = searchQuery.toLowerCase()
+      filtered = filtered.filter(project => 
+        project.title.toLowerCase().includes(query) ||
+        project.description.toLowerCase().includes(query) ||
+        project.technologies.some(tech => tech.name.toLowerCase().includes(query))
+      )
+    }
+
+    return filtered
+  }, [selectedCategory, searchQuery])
+
+  // Handle category change with animation
+  const handleCategoryChange = (category: ProjectCategory | 'all') => {
+    if (category === selectedCategory) return
+    
+    setIsAnimating(true)
+    setSelectedCategory(category)
+    
+    setTimeout(() => {
+      setIsAnimating(false)
+    }, 300)
+  }
+
+  // Debounced search handler
+  const handleSearchChange = useMemo(
+    () => debounce((value: string) => {
+      setSearchQuery(value)
+      setIsAnimating(true)
+      setTimeout(() => setIsAnimating(false), 300)
+    }, 300),
+    []
+  )
+
   return (
-    <Section id="projects" padding="xl" background="white">
-      <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-4">
-        My Recent <span className="text-purple-600">Works</span>
-      </h2>
-      <p className="text-center text-gray-600 mb-12">Here are a few projects I've worked on recently.</p>
-      
-      <Grid cols={1} responsive={{ md: 2, lg: 3 }} gap="lg">
-        {projects.map((project) => (
-          <Card key={project.id} hover padding="lg" className="h-full flex flex-col">
-            <div className="bg-gradient-to-br from-purple-100 to-blue-100 rounded-lg h-48 mb-6 flex items-center justify-center">
-              <span className="text-purple-600 font-medium text-lg">{project.title}</span>
-            </div>
-            <h3 className="text-xl font-semibold text-gray-900 mb-3">{project.title}</h3>
-            <p className="text-gray-600 mb-4 flex-grow">{project.description}</p>
-            <div className="flex flex-wrap gap-2 mb-6">
-              {project.technologies.map((tech) => (
-                <span 
-                  key={tech} 
-                  className="px-3 py-1 bg-purple-100 text-purple-800 text-sm rounded-full"
-                >
-                  {tech}
-                </span>
-              ))}
-            </div>
-            <div className="flex gap-3 mt-auto">
-              {project.demoLink && (
-                <a href={project.demoLink} target="_blank" rel="noopener noreferrer">
-                  <Button variant="primary" size="sm">Live Demo</Button>
-                </a>
+    <Section id="projects" padding="xl" background="secondary">
+      <div className="max-w-7xl mx-auto">
+        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center text-white mb-4">
+          Featured <span className="text-primary-400">Projects</span>
+        </h2>
+        <p className="text-center text-neutral-300 mb-12 text-lg">
+          Recent work showcasing my development skills
+        </p>
+
+        {/* Search Bar */}
+        <div className="mb-8 max-w-2xl mx-auto">
+          <div className="relative">
+            <input
+              type="text"
+              placeholder="Search projects by name, description, or technology..."
+              onChange={(e) => handleSearchChange(e.target.value)}
+              className="w-full px-5 py-3 pl-12 bg-neutral-800/50 border border-neutral-700 rounded-lg text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all"
+              aria-label="Search projects"
+            />
+            <svg
+              className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-neutral-400"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+              />
+            </svg>
+          </div>
+        </div>
+
+        {/* Category Filter Buttons */}
+        <div className="flex flex-wrap justify-center gap-3 mb-12">
+          {categories.map((category) => (
+            <button
+              key={category.value}
+              onClick={() => handleCategoryChange(category.value)}
+              className={cn(
+                'px-5 py-2.5 rounded-full font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 focus:ring-offset-neutral-900',
+                selectedCategory === category.value
+                  ? 'bg-primary-600 text-white shadow-lg shadow-primary-600/30 scale-105'
+                  : 'bg-neutral-800/50 text-neutral-300 border border-neutral-700 hover:bg-neutral-700/50 hover:border-neutral-600'
               )}
-              <a href={project.githubLink} target="_blank" rel="noopener noreferrer">
-                <Button variant="ghost" size="sm">Source Code</Button>
-              </a>
+              aria-pressed={selectedCategory === category.value}
+              aria-label={`Filter by ${category.label}`}
+            >
+              {category.label}
+            </button>
+          ))}
+        </div>
+
+        {/* Projects Grid with Animation */}
+        <div
+          className={cn(
+            'transition-opacity duration-300',
+            isAnimating ? 'opacity-0' : 'opacity-100'
+          )}
+        >
+          {filteredProjects.length > 0 ? (
+            <Grid cols={1} responsive={{ md: 2, lg: 3 }} gap="lg">
+              {filteredProjects.map((project) => (
+                <ProjectCard key={project.id} project={project} variant="grid" />
+              ))}
+            </Grid>
+          ) : (
+            <div className="text-center py-16">
+              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-neutral-800/50 border border-neutral-700 mb-4">
+                <svg
+                  className="w-8 h-8 text-neutral-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+              </div>
+              <h3 className="text-xl font-semibold text-white mb-2">No projects found</h3>
+              <p className="text-neutral-400">
+                Try adjusting your search or filter to find what you're looking for.
+              </p>
             </div>
-          </Card>
-        ))}
-      </Grid>
+          )}
+        </div>
+
+        {/* Results Count */}
+        {filteredProjects.length > 0 && (
+          <div className="text-center mt-8 text-neutral-400">
+            Showing {filteredProjects.length} of {portfolioData.projects.length} projects
+          </div>
+        )}
+      </div>
     </Section>
   )
 }

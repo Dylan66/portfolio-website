@@ -1,5 +1,6 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { Inter, JetBrains_Mono } from 'next/font/google'
+import Navigation from '@/components/navigation/Navigation'
 import './globals.css'
 
 const inter = Inter({ 
@@ -14,12 +15,16 @@ const jetbrainsMono = JetBrains_Mono({
   display: 'swap',
 })
 
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+}
+
 export const metadata: Metadata = {
   title: 'Professional Portfolio',
   description: 'A modern, responsive portfolio showcasing professional work and skills',
   keywords: ['portfolio', 'developer', 'web development', 'react', 'next.js'],
   authors: [{ name: 'Portfolio Owner' }],
-  viewport: 'width=device-width, initial-scale=1',
   robots: 'index, follow',
   openGraph: {
     type: 'website',
@@ -43,6 +48,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`}>
       <body className={inter.className}>
+        <Navigation />
         {children}
       </body>
     </html>

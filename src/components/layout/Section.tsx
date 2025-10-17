@@ -7,7 +7,7 @@ interface SectionProps {
   className?: string;
   id?: string;
   padding?: 'none' | 'sm' | 'md' | 'lg' | 'xl';
-  background?: 'white' | 'gray' | 'dark';
+  background?: 'primary' | 'secondary' | 'dark';
   containerSize?: 'sm' | 'md' | 'lg' | 'xl' | 'full';
 }
 
@@ -16,21 +16,21 @@ export const Section: React.FC<SectionProps> = ({
   className,
   id,
   padding = 'lg',
-  background = 'white',
+  background = 'primary',
   containerSize = 'lg'
 }) => {
   const paddingClasses = {
     none: '',
-    sm: 'py-8',
-    md: 'py-12',
-    lg: 'py-16',
-    xl: 'py-24'
+    sm: 'py-8 sm:py-12',
+    md: 'py-12 sm:py-16',
+    lg: 'py-16 sm:py-20',
+    xl: 'py-20 sm:py-24 md:py-32'
   };
-  
+
   const backgroundClasses = {
-    white: 'bg-white',
-    gray: 'bg-gray-50',
-    dark: 'bg-gray-900 text-white'
+    primary: 'bg-neutral-900',
+    secondary: 'bg-neutral-800',
+    dark: 'bg-neutral-950'
   };
 
   return (
@@ -39,6 +39,7 @@ export const Section: React.FC<SectionProps> = ({
       className={clsx(
         paddingClasses[padding],
         backgroundClasses[background],
+        'text-neutral-100',
         className
       )}
     >

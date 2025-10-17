@@ -14,10 +14,10 @@ export const Card: React.FC<CardProps> = ({
   hover = false,
   padding = 'md'
 }) => {
-  const baseClasses = 'bg-white rounded-lg border border-gray-200 shadow-sm';
+  const baseClasses = 'bg-neutral-800 rounded-lg border border-neutral-700 shadow-lg';
   
   const hoverClasses = hover 
-    ? 'transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:border-gray-300' 
+    ? 'transition-all duration-300 hover:shadow-xl hover:-translate-y-1 hover:border-neutral-600' 
     : '';
   
   const paddingClasses = {
