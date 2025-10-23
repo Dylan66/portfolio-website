@@ -20,16 +20,16 @@ export function formatDateRange(startDate: string, endDate?: string): string {
     year: 'numeric',
     month: 'short'
   })
-  
+
   if (!endDate) {
     return `${start} - Present`
   }
-  
+
   const end = new Date(endDate).toLocaleDateString('en-US', {
     year: 'numeric',
     month: 'short'
   })
-  
+
   return `${start} - ${end}`
 }
 
@@ -39,7 +39,7 @@ export function debounce<T extends (...args: any[]) => any>(
   wait: number
 ): (...args: Parameters<T>) => void {
   let timeout: NodeJS.Timeout
-  
+
   return (...args: Parameters<T>) => {
     clearTimeout(timeout)
     timeout = setTimeout(() => func(...args), wait)
@@ -52,7 +52,7 @@ export function throttle<T extends (...args: any[]) => any>(
   limit: number
 ): (...args: Parameters<T>) => void {
   let inThrottle: boolean
-  
+
   return (...args: Parameters<T>) => {
     if (!inThrottle) {
       func(...args)
@@ -65,28 +65,49 @@ export function throttle<T extends (...args: any[]) => any>(
 // Check if user prefers reduced motion
 export function prefersReducedMotion(): boolean {
   if (typeof window === 'undefined') return false
-  
+
   return window.matchMedia('(prefers-reduced-motion: reduce)').matches
 }
 
-// Generate blur data URL for images
-export function generateBlurDataURL(width: number = 10, height: number = 10): string {
-  const canvas = document.createElement('canvas')
-  canvas.width = width
-  canvas.height = height
+// Generate blur data URL for images (server-side compatible)
+export function generateBlurDataURL(color: string = '#1e293b'): string {
+  // Create a simple 10x10 SVG with the specified color for blur placeholder
+  const svg = `
+    <svg width="10" height="10" xmlns="http://www.w3.org/2000/svg">
+      <rect width="10" height="10" fill="${color}"/>
+    </svg>
+  `
   
-  const ctx = canvas.getContext('2d')
-  if (!ctx) return ''
-  
-  // Create a simple gradient blur placeholder
-  const gradient = ctx.createLinearGradient(0, 0, width, height)
-  gradient.addColorStop(0, '#1e293b')
-  gradient.addColorStop(1, '#334155')
-  
-  ctx.fillStyle = gradient
-  ctx.fillRect(0, 0, width, height)
-  
-  return canvas.toDataURL()
+  // Convert to base64 (works in both browser and Node.js)
+  if (typeof window === 'undefined') {
+    // Server-side (Node.js)
+    return `data:image/svg+xml;base64,${Buffer.from(svg).toString('base64')}`
+  } else {
+    // Client-side (browser)
+    return `data:image/svg+xml;base64,${btoa(svg)}`
+  }
+}
+
+// Get optimized image sizes for responsive images
+export function getImageSizes(variant: 'hero' | 'project' | 'avatar' | 'thumbnail'): string {
+  switch (variant) {
+    case 'hero':
+      return '(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px'
+    case 'project':
+      return '(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw'
+    case 'avatar':
+      return '(max-width: 768px) 200px, 400px'
+    case 'thumbnail':
+      return '(max-width: 768px) 100px, 200px'
+    default:
+      return '100vw'
+  }
+}
+
+// Determine if an image should be loaded with priority
+export function shouldPrioritizeImage(section: string): boolean {
+  // Only prioritize images in the hero section (above the fold)
+  return section === 'hero'
 }
 
 // Validate email format
@@ -107,7 +128,7 @@ export function getTechnologyColor(category: string): string {
     cloud: 'var(--color-secondary-400)',
     design: 'var(--color-neutral-300)'
   }
-  
+
   return colors[category] || 'var(--color-neutral-400)'
 }
 
@@ -115,10 +136,10 @@ export function getTechnologyColor(category: string): string {
 export function scrollToElement(elementId: string, offset: number = 80): void {
   const element = document.getElementById(elementId)
   if (!element) return
-  
+
   const elementPosition = element.getBoundingClientRect().top + window.pageYOffset
   const offsetPosition = elementPosition - offset
-  
+
   window.scrollTo({
     top: offsetPosition,
     behavior: prefersReducedMotion() ? 'auto' : 'smooth'
@@ -128,24 +149,24 @@ export function scrollToElement(elementId: string, offset: number = 80): void {
 // Get current section based on scroll position
 export function getCurrentSection(sections: string[]): string {
   const scrollPosition = window.scrollY + 100
-  
+
   for (let i = sections.length - 1; i >= 0; i--) {
     const section = document.getElementById(sections[i])
     if (section && section.offsetTop <= scrollPosition) {
       return sections[i]
     }
   }
-  
+
   return sections[0] || ''
 }
 
 // Format file size
 export function formatFileSize(bytes: number): string {
   if (bytes === 0) return '0 Bytes'
-  
+
   const k = 1024
   const sizes = ['Bytes', 'KB', 'MB', 'GB']
   const i = Math.floor(Math.log(bytes) / Math.log(k))
-  
+
   return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i]
 }

@@ -43,16 +43,7 @@ export const portfolioData: PortfolioData = {
         { name: 'Tailwind CSS', category: 'framework', proficiency: 5 },
         { name: 'JavaScript', category: 'language', proficiency: 5 }
       ],
-      images: [
-        {
-          src: '/images/projects/sahal-medical.jpg',
-          alt: 'Sahal Medical web application screenshot',
-          width: 1200,
-          height: 800,
-          placeholder: 'blur',
-          blurDataURL: 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCwAB//2Q=='
-        }
-      ],
+      images: [],
       links: {
         demo: 'https://sahal-web-dylan66s-projects.vercel.app/#home',
         github: 'https://github.com/Dylan66/sahal_web'
@@ -72,16 +63,7 @@ export const portfolioData: PortfolioData = {
         { name: 'Dashboard', category: 'tool', proficiency: 4 },
         { name: 'Analytics', category: 'tool', proficiency: 4 }
       ],
-      images: [
-        {
-          src: '/images/projects/period-relief.jpg',
-          alt: 'Period Relief Project dashboard screenshot',
-          width: 1200,
-          height: 800,
-          placeholder: 'blur',
-          blurDataURL: 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCwAB//2Q=='
-        }
-      ],
+      images: [],
       links: {
         demo: 'https://pp-relief-platform-cg1m.vercel.app/',
         github: 'https://github.com/Dylan66/PP-Relief-platform'
@@ -101,16 +83,7 @@ export const portfolioData: PortfolioData = {
         { name: 'Firebase', category: 'backend', proficiency: 4 },
         { name: 'Real-time', category: 'tool', proficiency: 4 }
       ],
-      images: [
-        {
-          src: '/images/projects/chatify.jpg',
-          alt: 'Chatify chat application screenshot',
-          width: 1200,
-          height: 800,
-          placeholder: 'blur',
-          blurDataURL: 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCwAB//2Q=='
-        }
-      ],
+      images: [],
       links: {
         demo: 'https://chatify-49.web.app/',
         github: 'https://github.com/soumyajit4419/Chatify'
@@ -130,16 +103,7 @@ export const portfolioData: PortfolioData = {
         { name: 'Transfer Learning', category: 'tool', proficiency: 4 },
         { name: 'Python', category: 'language', proficiency: 5 }
       ],
-      images: [
-        {
-          src: '/images/projects/plant-ai.jpg',
-          alt: 'Plant AI machine learning application screenshot',
-          width: 1200,
-          height: 800,
-          placeholder: 'blur',
-          blurDataURL: 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCwAB//2Q=='
-        }
-      ],
+      images: [],
       links: {
         demo: 'https://plant49-ai.herokuapp.com/',
         github: 'https://github.com/soumyajit4419/Plant_AI'
@@ -159,16 +123,7 @@ export const portfolioData: PortfolioData = {
         { name: 'Machine Learning', category: 'tool', proficiency: 5 },
         { name: 'Social Impact', category: 'tool', proficiency: 4 }
       ],
-      images: [
-        {
-          src: '/images/projects/ai-social-good.jpg',
-          alt: 'AI For Social Good project screenshot',
-          width: 1200,
-          height: 800,
-          placeholder: 'blur',
-          blurDataURL: 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCwAB//2Q=='
-        }
-      ],
+      images: [],
       links: {
         github: 'https://github.com/soumyajit4419/AI_For_Social_Good'
       },
@@ -187,16 +142,7 @@ export const portfolioData: PortfolioData = {
         { name: 'TensorFlow', category: 'framework', proficiency: 4 },
         { name: 'OpenCV', category: 'tool', proficiency: 4 }
       ],
-      images: [
-        {
-          src: '/images/projects/face-emotion.jpg',
-          alt: 'Face Recognition and Emotion Detection screenshot',
-          width: 1200,
-          height: 800,
-          placeholder: 'blur',
-          blurDataURL: 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCwAB//2Q=='
-        }
-      ],
+      images: [],
       links: {
         github: 'https://github.com/soumyajit4419/Face_And_Emotion_Detection'
       },
