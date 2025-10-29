@@ -22,14 +22,31 @@ export const viewport: Viewport = {
 }
 
 export const metadata: Metadata = {
-  title: 'Professional Portfolio',
+  metadataBase: new URL('https://yourportfolio.com'),
+  title: {
+    default: 'Professional Portfolio',
+    template: '%s | Professional Portfolio',
+  },
   description: 'A modern, responsive portfolio showcasing professional work and skills',
   keywords: ['portfolio', 'developer', 'web development', 'react', 'next.js'],
   authors: [{ name: 'Portfolio Owner' }],
-  robots: 'index, follow',
+  creator: 'Portfolio Owner',
+  publisher: 'Portfolio Owner',
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
   openGraph: {
     type: 'website',
     locale: 'en_US',
+    url: 'https://yourportfolio.com',
     title: 'Professional Portfolio',
     description: 'A modern, responsive portfolio showcasing professional work and skills',
     siteName: 'Professional Portfolio',
@@ -38,6 +55,9 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Professional Portfolio',
     description: 'A modern, responsive portfolio showcasing professional work and skills',
+  },
+  alternates: {
+    canonical: 'https://yourportfolio.com',
   },
 }
 

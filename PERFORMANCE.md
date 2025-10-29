@@ -24,10 +24,12 @@ This document outlines the performance optimizations implemented in the portfoli
 - **Bundle analyzer**: Visualize bundle size with `npm run analyze`
 
 ### 4. Static Site Generation (SSG)
-- **Pre-rendered pages**: All pages generated at build time
+- **Pre-rendered pages**: All pages generated at build time with `output: 'export'`
+- **Force static**: Pages explicitly configured with `dynamic = 'force-static'`
 - **Optimal performance**: No server-side rendering overhead
-- **SEO friendly**: Fully crawlable by search engines
+- **SEO friendly**: Fully crawlable by search engines with sitemap and robots.txt
 - **Fast deployment**: Static files served from CDN
+- **Cache headers**: Long-term caching for static assets (1 year)
 
 ### 5. Performance Monitoring
 - **Web Vitals tracking**: Core Web Vitals monitored in real-time
@@ -84,14 +86,20 @@ npm start
 - [x] Dynamic imports for heavy components
 - [x] Priority loading for above-the-fold content
 - [x] Blur placeholders for smooth loading
-- [x] Route-based code splitting
-- [x] Static Site Generation (SSG)
+- [x] Route-based code splitting (automatic with App Router)
+- [x] Static Site Generation (SSG) with `output: 'export'`
+- [x] Force static rendering with `dynamic = 'force-static'`
 - [x] Bundle analyzer configuration
 - [x] Web Vitals monitoring
 - [x] Font optimization with next/font
 - [x] Compression enabled
 - [x] Console removal in production
 - [x] React strict mode enabled
+- [x] Tree shaking enabled in webpack config
+- [x] Cache headers for static assets
+- [x] Sitemap generation for SEO
+- [x] Robots.txt configuration
+- [x] Enhanced metadata for SEO
 
 ## Future Improvements
 

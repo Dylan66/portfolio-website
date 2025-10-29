@@ -1,7 +1,11 @@
-import dynamic from 'next/dynamic'
+import dynamicImport from 'next/dynamic'
 import { Metadata } from 'next'
 import Hero from '@/components/sections/Hero'
 import { SectionSkeleton } from '@/components/ui'
+
+// Force static generation for this page
+export const dynamic = 'force-static'
+export const revalidate = false // Never revalidate (pure static)
 
 // Metadata for SEO optimization
 export const metadata: Metadata = {
@@ -13,23 +17,41 @@ export const metadata: Metadata = {
     title: 'Dealan Wanganga - Full Stack Developer',
     description: 'Building modern web applications with Python and JavaScript',
     type: 'website',
+    url: 'https://yourportfolio.com',
+    siteName: 'Dealan Wanganga Portfolio',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Dealan Wanganga - Full Stack Developer',
+    description: 'Building modern web applications with Python and JavaScript',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
   },
 }
 
 // Dynamic imports for below-the-fold sections with optimized loading states
-const About = dynamic(() => import('@/components/sections/About'), {
+const About = dynamicImport(() => import('@/components/sections/About'), {
   loading: () => <SectionSkeleton background="secondary" />
 })
 
-const Skills = dynamic(() => import('@/components/sections/Skills'), {
+const Skills = dynamicImport(() => import('@/components/sections/Skills'), {
   loading: () => <SectionSkeleton background="primary" />
 })
 
-const Projects = dynamic(() => import('@/components/sections/Projects'), {
+const Projects = dynamicImport(() => import('@/components/sections/Projects'), {
   loading: () => <SectionSkeleton background="secondary" />
 })
 
-const Contact = dynamic(() => import('@/components/sections/Contact'), {
+const Contact = dynamicImport(() => import('@/components/sections/Contact'), {
   loading: () => <SectionSkeleton background="primary" />
 })
 

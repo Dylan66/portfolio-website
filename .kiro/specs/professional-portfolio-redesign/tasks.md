@@ -128,6 +128,8 @@
 
 
 
+
+
   - [x] 7.1 Leverage Next.js Image and dynamic imports
 
     - Use Next.js Image component for automatic lazy loading and optimization
@@ -137,7 +139,13 @@
     - _Requirements: 2.2, 2.3_
 
 
+
   - [ ] 7.2 Optimize with Next.js built-in features
+
+
+
+
+
     - Leverage automatic route-based code splitting
     - Implement Static Site Generation (SSG) for all pages
     - Use Next.js bundle analyzer to optimize bundle size
