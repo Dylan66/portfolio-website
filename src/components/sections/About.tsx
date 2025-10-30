@@ -5,7 +5,7 @@ import { Card } from '@/components/ui'
 
 export default function About() {
   return (
-    <Section id="about" padding="xl" background="secondary">
+    <Section id="about" padding="lg" background="secondary">
       <div className="max-w-6xl mx-auto">
         <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center text-white mb-4">
           About <span className="text-primary-400">Me</span>

@@ -57,7 +57,7 @@ const getLevelColor = (level: string) => {
 
 export default function Skills() {
   return (
-    <Section id="skills" padding="xl" background="primary">
+    <Section id="skills" padding="lg" background="primary">
       <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center text-white mb-4">
         Skills & <span className="text-primary-400">Technologies</span>
       </h2>

@@ -37,9 +37,9 @@ export default function Hero() {
   return (
     <Section
       id="home"
-      padding="xl"
+      padding="md"
       background="dark"
-      className="min-h-screen flex items-center relative overflow-hidden"
+      className="flex items-center relative overflow-hidden"
     >
       {/* Particle background animation */}
       <ParticleBackground
@@ -55,7 +55,7 @@ export default function Hero() {
             className={`hero-text-reveal ${isVisible ? 'hero-text-visible' : ''}`}
             style={{ animationDelay: '0ms' }}
           >
-            <h1 className="text-xl md:text-2xl lg:text-3xl text-neutral-300 mb-6 font-light tracking-wide">
+            <h1 className="text-lg md:text-xl lg:text-2xl text-neutral-300 mb-4 font-light tracking-wide">
               Hi There! <span className="wave" suppressHydrationWarning>👋🏻</span>
             </h1>
           </div>
@@ -65,7 +65,7 @@ export default function Hero() {
             className={`hero-text-reveal ${isVisible ? 'hero-text-visible' : ''}`}
             style={{ animationDelay: '150ms' }}
           >
-            <h2 className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-white mb-6 leading-tight">
+            <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-4 leading-tight">
               I'M{' '}
               <span className="bg-gradient-to-r from-primary-400 via-primary-500 to-secondary-400 bg-clip-text text-transparent">
                 {personal.name}
@@ -78,7 +78,7 @@ export default function Hero() {
             className={`hero-text-reveal ${isVisible ? 'hero-text-visible' : ''}`}
             style={{ animationDelay: '300ms' }}
           >
-            <div className="text-2xl md:text-3xl lg:text-4xl text-primary-300 mb-8 font-semibold tracking-wide">
+            <div className="text-xl md:text-2xl lg:text-3xl text-primary-300 mb-6 font-semibold tracking-wide">
               {personal.title}
             </div>
           </div>
@@ -88,7 +88,7 @@ export default function Hero() {
             className={`hero-text-reveal ${isVisible ? 'hero-text-visible' : ''}`}
             style={{ animationDelay: '450ms' }}
           >
-            <p className="text-base md:text-lg lg:text-xl text-neutral-300 mb-12 max-w-3xl mx-auto leading-relaxed px-4">
+            <p className="text-sm md:text-base lg:text-lg text-neutral-300 mb-8 max-w-2xl mx-auto leading-relaxed px-4">
               {personal.description}
             </p>
           </div>
@@ -123,7 +123,7 @@ export default function Hero() {
             className={`hero-text-reveal ${isVisible ? 'hero-text-visible' : ''}`}
             style={{ animationDelay: '750ms' }}
           >
-            <div className="flex gap-6 justify-center items-center mt-12">
+            <div className="flex gap-6 justify-center items-center mt-8 mb-16">
               {personal.social.map((link) => (
                 <a
                   key={link.platform}

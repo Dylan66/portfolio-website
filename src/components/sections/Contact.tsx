@@ -5,7 +5,7 @@ import { Button } from '@/components/ui'
 
 export default function Contact() {
   return (
-    <Section id="contact" padding="xl" background="primary">
+    <Section id="contact" padding="lg" background="primary">
       <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center text-white mb-4">
         Get In <span className="text-primary-400">Touch</span>
       </h2>
