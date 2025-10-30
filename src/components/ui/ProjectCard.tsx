@@ -169,7 +169,7 @@ const TechnologyTag: React.FC<TechnologyTagProps> = ({ technology }) => {
         colorClass
       )}
     >
-      {technology.icon && <span className="mr-1">{technology.icon}</span>}
+      {technology.icon && <span className="mr-1" suppressHydrationWarning>{technology.icon}</span>}
       {technology.name}
     </span>
   )

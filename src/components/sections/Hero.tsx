@@ -9,10 +9,10 @@ import { portfolioData } from '@/data/portfolio'
 // Lazy load ParticleBackground for better performance with optimized loading state
 const ParticleBackground = dynamic(
   () => import('@/components/ui/ParticleBackground'),
-  { 
+  {
     ssr: false,
     loading: () => (
-      <div 
+      <div
         className="absolute inset-0 bg-gradient-to-br from-primary-900/20 via-transparent to-secondary-900/10 pointer-events-none"
         aria-label="Loading background animation"
       />
@@ -35,33 +35,33 @@ export default function Hero() {
   }
 
   return (
-    <Section 
-      id="home" 
-      padding="xl" 
-      background="dark" 
+    <Section
+      id="home"
+      padding="xl"
+      background="dark"
       className="min-h-screen flex items-center relative overflow-hidden"
     >
       {/* Particle background animation */}
-      <ParticleBackground 
+      <ParticleBackground
         particleCount={60}
         speed={0.3}
         maxDistance={120}
       />
-      
+
       <div className="relative z-10 w-full">
         <div className="max-w-5xl mx-auto text-center">
           {/* Greeting with wave animation */}
-          <div 
+          <div
             className={`hero-text-reveal ${isVisible ? 'hero-text-visible' : ''}`}
             style={{ animationDelay: '0ms' }}
           >
             <h1 className="text-xl md:text-2xl lg:text-3xl text-neutral-300 mb-6 font-light tracking-wide">
-              Hi There! <span className="wave">👋🏻</span>
+              Hi There! <span className="wave" suppressHydrationWarning>👋🏻</span>
             </h1>
           </div>
 
           {/* Main heading with name highlight */}
-          <div 
+          <div
             className={`hero-text-reveal ${isVisible ? 'hero-text-visible' : ''}`}
             style={{ animationDelay: '150ms' }}
           >
@@ -74,7 +74,7 @@ export default function Hero() {
           </div>
 
           {/* Role/Title with accent color */}
-          <div 
+          <div
             className={`hero-text-reveal ${isVisible ? 'hero-text-visible' : ''}`}
             style={{ animationDelay: '300ms' }}
           >
@@ -84,7 +84,7 @@ export default function Hero() {
           </div>
 
           {/* Description */}
-          <div 
+          <div
             className={`hero-text-reveal ${isVisible ? 'hero-text-visible' : ''}`}
             style={{ animationDelay: '450ms' }}
           >
@@ -94,22 +94,22 @@ export default function Hero() {
           </div>
 
           {/* CTA Buttons */}
-          <div 
+          <div
             className={`hero-text-reveal ${isVisible ? 'hero-text-visible' : ''}`}
             style={{ animationDelay: '600ms' }}
           >
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center px-4">
-              <Button 
-                variant="primary" 
+              <Button
+                variant="primary"
                 size="lg"
                 onClick={() => scrollToSection('projects')}
                 className="w-full sm:w-auto min-w-[180px] shadow-lg shadow-primary-500/20 hover:shadow-primary-500/40 transition-shadow"
               >
                 View Projects
               </Button>
-              <Button 
-                variant="ghost" 
-                size="lg" 
+              <Button
+                variant="ghost"
+                size="lg"
                 className="w-full sm:w-auto min-w-[180px] text-white border-2 border-primary-400 hover:bg-primary-900/30 hover:border-primary-300 transition-all"
                 onClick={() => scrollToSection('contact')}
               >
@@ -119,7 +119,7 @@ export default function Hero() {
           </div>
 
           {/* Social Links */}
-          <div 
+          <div
             className={`hero-text-reveal ${isVisible ? 'hero-text-visible' : ''}`}
             style={{ animationDelay: '750ms' }}
           >
@@ -141,10 +141,10 @@ export default function Hero() {
                     )}
                     {link.platform === 'linkedin' && (
                       <svg className="w-8 h-8 md:w-9 md:h-9" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
                       </svg>
                     )}
-                    {link.platform === 'email' && '✉️'}
+                    {link.platform === 'email' && <span suppressHydrationWarning>✉️</span>}
                   </span>
                 </a>
               ))}
