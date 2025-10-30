@@ -59,7 +59,7 @@ export default function Navigation({ variant = 'transparent', className = '' }: 
   `.trim()
 
   return (
-    <nav className={navbarClasses} role="navigation" aria-label="Main navigation">
+    <nav className={navbarClasses} role="navigation" aria-label="Main navigation" suppressHydrationWarning>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo/Brand */}
@@ -77,23 +77,41 @@ export default function Navigation({ variant = 'transparent', className = '' }: 
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-4">
               {navItems.map(({ id, label, href }) => {
-                const isActive = activeSection === id
                 const isExternal = !href.startsWith('#')
+                // External links should never be "active" since they're not sections on this page
+                const isActive = !isExternal && activeSection === id
 
+                const linkClassName = `
+                  px-3 py-2 rounded-md text-sm font-medium transition-all duration-200
+                  focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-slate-900
+                  ${isActive
+                    ? 'text-blue-400 bg-blue-500/10 border-b-2 border-blue-400'
+                    : 'text-slate-300 hover:text-white hover:bg-slate-800/50'
+                  }
+                `.trim()
+
+                // Use regular anchor tag for external links to prevent hydration issues
+                if (isExternal) {
+                  return (
+                    <a
+                      key={id}
+                      href={href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={linkClassName}
+                    >
+                      {label}
+                    </a>
+                  )
+                }
+
+                // Use Next.js Link for internal hash links
                 return (
                   <Link
                     key={id}
                     href={href}
                     onClick={(e) => handleSmoothScroll(e, href)}
-                    {...(isExternal && { target: '_blank', rel: 'noopener noreferrer' })}
-                    className={`
-                      px-3 py-2 rounded-md text-sm font-medium transition-all duration-200
-                      focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-slate-900
-                      ${isActive
-                        ? 'text-blue-400 bg-blue-500/10 border-b-2 border-blue-400'
-                        : 'text-slate-300 hover:text-white hover:bg-slate-800/50'
-                      }
-                    `.trim()}
+                    className={linkClassName}
                     aria-current={isActive ? 'page' : undefined}
                   >
                     {label}

@@ -22,6 +22,7 @@ const navItems: NavItem[] = [
   { id: 'skills', label: 'Skills', href: '#skills' },
   { id: 'projects', label: 'Projects', href: '#projects' },
   { id: 'contact', label: 'Contact', href: '#contact' },
+  { id: 'blog', label: 'Blog', href: 'https://syntaxnsoul.hashnode.dev/' },
 ]
 
 export default function MobileMenu({ isOpen, onClose, activeSection, onSectionClick }: MobileMenuProps) {
@@ -30,27 +31,26 @@ export default function MobileMenu({ isOpen, onClose, activeSection, onSectionCl
 
   // Handle escape key and focus management
   useEffect(() => {
-    if (isOpen) {
-      // Focus first link when menu opens
-      firstLinkRef.current?.focus()
-      
-      // Prevent body scroll when menu is open
-      document.body.style.overflow = 'hidden'
-      
-      const handleEscape = (e: KeyboardEvent) => {
-        if (e.key === 'Escape') {
-          onClose()
-        }
+    if (!isOpen) return
+
+    // Focus first link when menu opens
+    firstLinkRef.current?.focus()
+    
+    // Prevent body scroll when menu is open
+    const originalOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        onClose()
       }
-      
-      document.addEventListener('keydown', handleEscape)
-      
-      return () => {
-        document.removeEventListener('keydown', handleEscape)
-        document.body.style.overflow = 'unset'
-      }
-    } else {
-      document.body.style.overflow = 'unset'
+    }
+    
+    document.addEventListener('keydown', handleEscape)
+    
+    return () => {
+      document.removeEventListener('keydown', handleEscape)
+      document.body.style.overflow = originalOverflow
     }
   }, [isOpen, onClose])
 
@@ -157,27 +157,43 @@ export default function MobileMenu({ isOpen, onClose, activeSection, onSectionCl
         <nav className="flex-1 px-4 py-6" role="navigation">
           <ul className="space-y-2">
             {navItems.map(({ id, label, href }, index) => {
-              const isActive = activeSection === id
+              const isExternal = !href.startsWith('#')
+              const isActive = !isExternal && activeSection === id
               
+              const linkClassName = `
+                block px-4 py-3 rounded-lg text-base font-medium transition-all duration-200
+                focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-slate-900
+                ${isActive
+                  ? 'text-blue-400 bg-blue-500/10 border-l-4 border-blue-400'
+                  : 'text-slate-300 hover:text-white hover:bg-slate-800'
+                }
+              `.trim()
+
               return (
                 <li key={id}>
-                  <Link
-                    ref={index === 0 ? firstLinkRef : undefined}
-                    href={href}
-                    onClick={(e) => handleLinkClick(e, href)}
-                    onKeyDown={(e) => handleKeyDown(e, index)}
-                    className={`
-                      block px-4 py-3 rounded-lg text-base font-medium transition-all duration-200
-                      focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-slate-900
-                      ${isActive
-                        ? 'text-blue-400 bg-blue-500/10 border-l-4 border-blue-400'
-                        : 'text-slate-300 hover:text-white hover:bg-slate-800'
-                      }
-                    `.trim()}
-                    aria-current={isActive ? 'page' : undefined}
-                  >
-                    {label}
-                  </Link>
+                  {isExternal ? (
+                    <a
+                      ref={index === 0 ? firstLinkRef : undefined}
+                      href={href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={linkClassName}
+                      onKeyDown={(e) => handleKeyDown(e, index)}
+                    >
+                      {label}
+                    </a>
+                  ) : (
+                    <Link
+                      ref={index === 0 ? firstLinkRef : undefined}
+                      href={href}
+                      onClick={(e) => handleLinkClick(e, href)}
+                      onKeyDown={(e) => handleKeyDown(e, index)}
+                      className={linkClassName}
+                      aria-current={isActive ? 'page' : undefined}
+                    >
+                      {label}
+                    </Link>
+                  )}
                 </li>
               )
             })}

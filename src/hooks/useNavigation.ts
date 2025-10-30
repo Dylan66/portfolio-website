@@ -11,22 +11,31 @@ interface UseNavigationReturn {
 export function useNavigation(): UseNavigationReturn {
   const [activeSection, setActiveSection] = useState('home')
   const [isScrolled, setIsScrolled] = useState(false)
+  const [isMounted, setIsMounted] = useState(false)
+
+  // Handle mount state to prevent hydration mismatch
+  useEffect(() => {
+    setIsMounted(true)
+    // Set initial scroll state after mount
+    setIsScrolled(window.scrollY > 50)
+  }, [])
 
   // Handle scroll position for navbar background
   useEffect(() => {
+    if (!isMounted) return
+
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50)
     }
 
-    // Set initial state
-    handleScroll()
-
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+  }, [isMounted])
 
   // Intersection Observer for active section highlighting
   useEffect(() => {
+    if (!isMounted) return
+
     const observerOptions: IntersectionObserverInit = {
       root: null,
       rootMargin: '-20% 0px -80% 0px',
@@ -51,7 +60,7 @@ export function useNavigation(): UseNavigationReturn {
     })
 
     return () => observer.disconnect()
-  }, [])
+  }, [isMounted])
 
   // Smooth scroll to section
   const scrollToSection = useCallback((sectionId: string) => {
@@ -72,8 +81,8 @@ export function useNavigation(): UseNavigationReturn {
   }, [])
 
   return {
-    activeSection,
-    isScrolled,
+    activeSection: isMounted ? activeSection : '',
+    isScrolled: isMounted ? isScrolled : false,
     scrollToSection
   }
 }
