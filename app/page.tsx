@@ -1,11 +1,9 @@
-import dynamicImport from 'next/dynamic'
 import { Metadata } from 'next'
 import Hero from '@/components/sections/Hero'
-import { SectionSkeleton } from '@/components/ui'
-
-// Force static generation for this page
-export const dynamic = 'force-static'
-export const revalidate = false // Never revalidate (pure static)
+import About from '@/components/sections/About'
+import Skills from '@/components/sections/Skills'
+import Projects from '@/components/sections/Projects'
+import Contact from '@/components/sections/Contact'
 
 // Metadata for SEO optimization
 export const metadata: Metadata = {
@@ -17,7 +15,7 @@ export const metadata: Metadata = {
     title: 'Dealan Wanganga - Full Stack Developer',
     description: 'Building modern web applications with Python and JavaScript',
     type: 'website',
-    url: 'https://yourportfolio.com',
+    url: 'https://dealan.vercel.app',
     siteName: 'Dealan Wanganga Portfolio',
   },
   twitter: {
@@ -37,27 +35,6 @@ export const metadata: Metadata = {
     },
   },
 }
-
-// Dynamic imports for below-the-fold sections with optimized loading states
-const About = dynamicImport(() => import('@/components/sections/About'), {
-  loading: () => <SectionSkeleton background="secondary" />,
-  ssr: false
-})
-
-const Skills = dynamicImport(() => import('@/components/sections/Skills'), {
-  loading: () => <SectionSkeleton background="primary" />,
-  ssr: false
-})
-
-const Projects = dynamicImport(() => import('@/components/sections/Projects'), {
-  loading: () => <SectionSkeleton background="secondary" />,
-  ssr: false
-})
-
-const Contact = dynamicImport(() => import('@/components/sections/Contact'), {
-  loading: () => <SectionSkeleton background="primary" />,
-  ssr: false
-})
 
 export default function Home() {
   return (

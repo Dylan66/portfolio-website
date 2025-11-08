@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 import { Inter, JetBrains_Mono } from 'next/font/google'
 import Navigation from '@/components/navigation/Navigation'
+import Footer from '@/components/layout/Footer'
 import BackToTop from '@/components/ui/BackToTop'
 import { WebVitals } from './web-vitals'
 import './globals.css'
@@ -73,6 +74,7 @@ export default function RootLayout({
         <WebVitals />
         <Navigation />
         {children}
+        <Footer />
         <BackToTop />
       </body>
     </html>
