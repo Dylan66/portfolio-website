@@ -19,40 +19,51 @@ export default function About() {
   ]
 
   return (
-    <Section id="about" padding="lg" background="secondary">
+    <Section id="about" padding="md" background="secondary">
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center text-white mb-4">
+        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center text-white mb-8">
           About <span className="text-primary-400">Me</span>
         </h2>
-        <p className="text-center text-neutral-300 mb-12 text-lg max-w-3xl mx-auto">
-          Turning complex problems into elegant solutions through code, collaboration, and continuous learning
-        </p>
         
-        <div className="space-y-8">
+        <div className="space-y-6">
           {/* My Approach */}
-          <Card padding="lg" className="bg-neutral-800/50 border-neutral-700 backdrop-blur-sm">
+          <Card padding="md" className="bg-neutral-800/50 border-neutral-700 backdrop-blur-sm">
             <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
               <span className="text-3xl">💡</span>
               <span>My Approach</span>
             </h3>
-            <div className="grid md:grid-cols-3 gap-6">
-              <div className="space-y-2">
-                <div className="text-primary-400 font-semibold text-lg">User-Centric Design</div>
-                <p className="text-neutral-300 text-sm leading-relaxed">
-                  Every line of code serves a purpose. I prioritize intuitive interfaces and seamless experiences that users actually enjoy.
+            
+            <div className="space-y-6">
+              <div className="flex flex-col sm:flex-row gap-6 items-center">
+                <img
+                  src="/images/dylan.png"
+                  alt="Dylan"
+                  className="w-32 h-32 sm:w-36 sm:h-36 rounded-xl object-cover border-2 border-primary-400/40 shadow-lg flex-shrink-0"
+                />
+                <p className="text-neutral-300 leading-relaxed flex-1">
+                  I craft digital experiences that connect people and purpose. Every line of code is written with intention, blending technical precision and genuine empathy to create products that feel as good as they function.
                 </p>
               </div>
-              <div className="space-y-2">
-                <div className="text-primary-400 font-semibold text-lg">Scalable Architecture</div>
-                <p className="text-neutral-300 text-sm leading-relaxed">
-                  Building for today while planning for tomorrow. Clean code, modular design, and performance optimization are non-negotiable.
-                </p>
-              </div>
-              <div className="space-y-2">
-                <div className="text-primary-400 font-semibold text-lg">Continuous Growth</div>
-                <p className="text-neutral-300 text-sm leading-relaxed">
-                  Technology evolves rapidly. I stay ahead by experimenting with emerging tools and contributing to the developer community.
-                </p>
+              
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div className="space-y-2">
+                  <div className="text-primary-400 font-semibold">User-Centric Design</div>
+                  <p className="text-neutral-300 text-sm leading-relaxed">
+                    Every line of code serves a purpose. I prioritize intuitive interfaces and seamless experiences that users actually enjoy.
+                  </p>
+                </div>
+                <div className="space-y-2">
+                  <div className="text-primary-400 font-semibold">Scalable Architecture</div>
+                  <p className="text-neutral-300 text-sm leading-relaxed">
+                    Building for today while planning for tomorrow. Clean code, modular design, and performance optimization are non-negotiable.
+                  </p>
+                </div>
+                <div className="space-y-2">
+                  <div className="text-primary-400 font-semibold">Continuous Growth</div>
+                  <p className="text-neutral-300 text-sm leading-relaxed">
+                    Technology evolves rapidly. I stay ahead by experimenting with emerging tools and contributing to the developer community.
+                  </p>
+                </div>
               </div>
             </div>
           </Card>
