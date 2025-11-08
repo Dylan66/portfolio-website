@@ -24,7 +24,7 @@ const nextConfig = {
     contentDispositionType: 'attachment',
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
     // Disable image optimization API for static export
-    unoptimized: process.env.NODE_ENV === 'production',
+    unoptimized: true,
   },
   
   // Compiler optimizations
