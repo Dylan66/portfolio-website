@@ -5,12 +5,12 @@ import { Button } from '@/components/ui'
 
 export default function Contact() {
   return (
-    <Section id="contact" padding="lg" background="primary">
+    <Section id="contact" padding="md" background="primary">
       <div className="max-w-4xl mx-auto">
-        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center text-white mb-6">
+        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center text-white mb-4">
           Let's Work <span className="text-primary-400">Together</span>
         </h2>
-        <p className="text-center text-neutral-300 mb-12 text-lg max-w-2xl mx-auto">
+        <p className="text-center text-neutral-300 mb-8 text-lg max-w-2xl mx-auto">
           I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision. Feel free to reach out.
         </p>
         
