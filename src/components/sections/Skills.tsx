@@ -5,39 +5,78 @@ import { Card } from '@/components/ui'
 
 const skillCategories = [
   {
-    title: "DevOps & Infrastructure",
-    skills: [
-      { name: "Docker", level: "Advanced" },
-      { name: "Kubernetes", level: "Advanced" },
-      { name: "Ansible", level: "Advanced" },
-      { name: "Jenkins", level: "Advanced" },
-      { name: "Grafana", level: "Intermediate" },
-      { name: "Prometheus", level: "Intermediate" },
-      { name: "AWS", level: "Advanced" },
-      { name: "Linux", level: "Advanced" },
-      { name: "Git", level: "Advanced" }
-    ]
-  },
-  {
-    title: "Backend Development", 
-    skills: [
-      { name: "Python", level: "Advanced" },
-      { name: "FastAPI", level: "Advanced" },
-      { name: "Django", level: "Intermediate" },
-      { name: "Node.js", level: "Intermediate" },
-      { name: "PostgreSQL", level: "Advanced" },
-      { name: "MongoDB", level: "Intermediate" }
-    ]
-  },
-  {
     title: "Frontend Development",
+    icon: "⚛️",
+    description: "Modern UI frameworks and responsive design",
     skills: [
-      { name: "React", level: "Advanced" },
-      { name: "Next.js", level: "Advanced" },
-      { name: "JavaScript", level: "Advanced" },
-      { name: "TypeScript", level: "Intermediate" },
-      { name: "HTML/CSS", level: "Advanced" },
-      { name: "Tailwind CSS", level: "Advanced" }
+      { name: "React", level: "Advanced", icon: "⚛️" },
+      { name: "Next.js", level: "Advanced", icon: "▲" },
+      { name: "TypeScript", level: "Advanced", icon: "📘" },
+      { name: "JavaScript", level: "Advanced", icon: "💛" },
+      { name: "Tailwind CSS", level: "Advanced", icon: "🎨" },
+      { name: "HTML/CSS", level: "Advanced", icon: "🌐" }
+    ]
+  },
+  {
+    title: "Backend Development",
+    icon: "⚙️",
+    description: "Server-side technologies and API development",
+    skills: [
+      { name: "Python", level: "Advanced", icon: "🐍" },
+      { name: "FastAPI", level: "Advanced", icon: "⚡" },
+      { name: "Django", level: "Intermediate", icon: "🎸" },
+      { name: "Node.js", level: "Intermediate", icon: "💚" },
+      { name: "REST APIs", level: "Advanced", icon: "🔌" }
+    ]
+  },
+  {
+    title: "Database & Storage",
+    icon: "🗄️",
+    description: "Data persistence and management solutions",
+    skills: [
+      { name: "PostgreSQL", level: "Advanced", icon: "🐘" },
+      { name: "MongoDB", level: "Intermediate", icon: "🍃" },
+      { name: "Redis", level: "Intermediate", icon: "🔴" },
+      { name: "SQL", level: "Advanced", icon: "📊" },
+      { name: "Database Design", level: "Advanced", icon: "🏗️" }
+    ]
+  },
+  {
+    title: "DevOps & Cloud",
+    icon: "☁️",
+    description: "Infrastructure, deployment, and orchestration",
+    skills: [
+      { name: "Docker", level: "Advanced", icon: "🐳" },
+      { name: "Kubernetes", level: "Advanced", icon: "☸️" },
+      { name: "AWS", level: "Advanced", icon: "☁️" },
+      { name: "CI/CD", level: "Advanced", icon: "🔄" },
+      { name: "Linux", level: "Advanced", icon: "🐧" },
+      { name: "Git", level: "Advanced", icon: "📦" }
+    ]
+  },
+  {
+    title: "Monitoring & Automation",
+    icon: "📊",
+    description: "System observability and workflow automation",
+    skills: [
+      { name: "Grafana", level: "Intermediate", icon: "📈" },
+      { name: "Prometheus", level: "Intermediate", icon: "🔥" },
+      { name: "Ansible", level: "Advanced", icon: "🤖" },
+      { name: "Jenkins", level: "Advanced", icon: "👷" },
+      { name: "Terraform", level: "Intermediate", icon: "🏗️" }
+    ]
+  },
+  {
+    title: "AI & Machine Learning",
+    icon: "🤖",
+    description: "Deep learning and intelligent systems",
+    skills: [
+      { name: "PyTorch", level: "Advanced", icon: "🔥" },
+      { name: "TensorFlow", level: "Intermediate", icon: "🧠" },
+
+      { name: "Zapier", level: "Intermediate", icon: "⚡" },
+      { name: "n8n", level: "Intermediate", icon: "�" },
+      { name: "Google Genkit AI", level: "Intermediate", icon: "✨" }
     ]
   }
 ]
@@ -45,52 +84,81 @@ const skillCategories = [
 const getLevelColor = (level: string) => {
   switch (level) {
     case 'Advanced':
-      return 'bg-green-100 text-green-800'
+      return 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30'
     case 'Intermediate':
-      return 'bg-blue-100 text-blue-800'
+      return 'bg-blue-500/20 text-blue-300 border-blue-500/30'
     case 'Beginner':
-      return 'bg-yellow-100 text-yellow-800'
+      return 'bg-amber-500/20 text-amber-300 border-amber-500/30'
     default:
-      return 'bg-gray-100 text-gray-800'
+      return 'bg-neutral-500/20 text-neutral-300 border-neutral-500/30'
   }
 }
 
 export default function Skills() {
   return (
     <Section id="skills" padding="lg" background="primary">
-      <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center text-white mb-4">
-        Skills & <span className="text-primary-400">Technologies</span>
-      </h2>
-      <p className="text-center text-neutral-300 mb-12 text-lg">My technical expertise and proficiency levels</p>
-      
-      <Grid cols={1} responsive={{ md: 2, lg: 3 }} gap="lg">
-        {skillCategories.map((category) => (
-          <Card key={category.title} padding="lg" hover className="bg-neutral-800/50 border-neutral-700">
-            <h3 className="text-xl font-semibold text-white mb-6 text-center">
-              {category.title}
-            </h3>
-            <div className="space-y-3">
-              {category.skills.map((skill) => (
-                <div key={skill.name} className="flex items-center justify-between">
-                  <span className="text-neutral-200 font-medium">{skill.name}</span>
-                  <span className={`px-2 py-1 rounded-full text-xs font-medium ${getLevelColor(skill.level)}`}>
-                    {skill.level}
-                  </span>
+      <div className="max-w-7xl mx-auto">
+        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center text-white mb-4">
+          Skills & <span className="text-primary-400">Technologies</span>
+        </h2>
+        <p className="text-center text-neutral-300 mb-12 text-lg">
+          A comprehensive toolkit for building modern, scalable applications
+        </p>
+        
+        <Grid cols={1} responsive={{ md: 2, lg: 3 }} gap="lg">
+          {skillCategories.map((category) => (
+            <Card 
+              key={category.title} 
+              padding="lg" 
+              hover 
+              className="bg-neutral-800/50 border-neutral-700 backdrop-blur-sm"
+            >
+              <div className="flex items-center gap-3 mb-4">
+                <span className="text-3xl">{category.icon}</span>
+                <div>
+                  <h3 className="text-xl font-semibold text-white">
+                    {category.title}
+                  </h3>
+                  <p className="text-xs text-neutral-400 mt-1">{category.description}</p>
                 </div>
-              ))}
-            </div>
+              </div>
+              
+              <div className="space-y-2.5">
+                {category.skills.map((skill) => (
+                  <div 
+                    key={skill.name} 
+                    className="flex items-center justify-between p-2.5 rounded-lg bg-neutral-900/30 border border-neutral-700/50 hover:border-primary-400/50 transition-colors group"
+                  >
+                    <div className="flex items-center gap-2">
+                      <span className="text-lg">{skill.icon}</span>
+                      <span className="text-neutral-200 font-medium group-hover:text-white transition-colors">
+                        {skill.name}
+                      </span>
+                    </div>
+                    <span className={`px-2.5 py-1 rounded-full text-xs font-medium border ${getLevelColor(skill.level)}`}>
+                      {skill.level}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </Card>
+          ))}
+        </Grid>
+        
+        <div className="mt-12">
+          <Card padding="lg" className="max-w-3xl mx-auto bg-neutral-800/50 border-neutral-700 backdrop-blur-sm">
+            <h3 className="text-2xl font-bold text-white mb-4 flex items-center gap-3">
+              <span className="text-3xl">⛓️</span>
+              <span>Exploring New Frontiers</span>
+            </h3>
+            <p className="text-neutral-300 leading-relaxed">
+              Beyond my core expertise, I actively explore <span className="text-primary-400 font-semibold">blockchain development</span> and 
+              <span className="text-primary-400 font-semibold"> smart contracts</span>, staying curious about emerging technologies 
+              like Web3, DeFi, and decentralized applications. This continuous learning mindset keeps me adaptable and ready 
+              to tackle tomorrow's challenges.
+            </p>
           </Card>
-        ))}
-      </Grid>
-      
-      <div className="mt-12 text-center">
-        <Card padding="lg" className="max-w-2xl mx-auto bg-neutral-800/50 border-neutral-700">
-          <h3 className="text-lg font-semibold text-white mb-3">Additional Interests</h3>
-          <p className="text-neutral-200 leading-relaxed">
-            I also explore <span className="text-primary-400 font-medium">blockchain development</span> and 
-            smart contracts as a hobby, staying curious about emerging technologies and their potential applications.
-          </p>
-        </Card>
+        </div>
       </div>
     </Section>
   )
