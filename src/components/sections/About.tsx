@@ -104,19 +104,6 @@ export default function About() {
             </div>
           </Card>
 
-          {/* Philosophy */}
-          <Card padding="lg" className="bg-gradient-to-br from-primary-900/20 to-secondary-900/20 border-primary-400/30 backdrop-blur-sm">
-            <div className="text-center space-y-4">
-              <div className="text-4xl mb-2">💭</div>
-              <blockquote className="text-xl md:text-2xl font-medium text-white italic">
-                "Strive to build things that make a difference"
-              </blockquote>
-              <p className="text-neutral-300 text-sm max-w-2xl mx-auto">
-                Technology is a tool for positive change. Whether it's streamlining workflows, connecting communities, 
-                or solving real-world problems, I'm driven by impact over complexity.
-              </p>
-            </div>
-          </Card>
         </div>
       </div>
     </Section>
