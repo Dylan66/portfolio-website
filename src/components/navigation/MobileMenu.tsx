@@ -1,0 +1,233 @@
+'use client'
+
+import { useEffect, useRef } from 'react'
+import Link from 'next/link'
+
+interface MobileMenuProps {
+  isOpen: boolean
+  onClose: () => void
+  activeSection: string
+  onSectionClick: (sectionId: string) => void
+}
+
+interface NavItem {
+  id: string
+  label: string
+  href: string
+}
+
+const navItems: NavItem[] = [
+  { id: 'home', label: 'Home', href: '#home' },
+  { id: 'about', label: 'About', href: '#about' },
+  { id: 'skills', label: 'Skills', href: '#skills' },
+  { id: 'projects', label: 'Projects', href: '#projects' },
+  { id: 'contact', label: 'Contact', href: '#contact' },
+  { id: 'blog', label: 'Blog', href: 'https://syntaxnsoul.hashnode.dev/' },
+]
+
+export default function MobileMenu({ isOpen, onClose, activeSection, onSectionClick }: MobileMenuProps) {
+  const menuRef = useRef<HTMLDivElement>(null)
+  const firstLinkRef = useRef<HTMLAnchorElement>(null)
+
+  // Handle escape key and focus management
+  useEffect(() => {
+    if (!isOpen) return
+
+    // Focus first link when menu opens
+    firstLinkRef.current?.focus()
+    
+    // Prevent body scroll when menu is open
+    const originalOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        onClose()
+      }
+    }
+    
+    document.addEventListener('keydown', handleEscape)
+    
+    return () => {
+      document.removeEventListener('keydown', handleEscape)
+      document.body.style.overflow = originalOverflow
+    }
+  }, [isOpen, onClose])
+
+  // Handle click outside to close menu
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        onClose()
+      }
+    }
+
+    if (isOpen) {
+      document.addEventListener('mousedown', handleClickOutside)
+      return () => document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [isOpen, onClose])
+
+  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault()
+    
+    if (href.startsWith('#')) {
+      const targetId = href.substring(1)
+      onSectionClick(targetId)
+      onClose()
+    }
+  }
+
+  // Handle keyboard navigation within menu
+  const handleKeyDown = (e: React.KeyboardEvent, index: number) => {
+    const menuItems = menuRef.current?.querySelectorAll('a')
+    if (!menuItems) return
+
+    switch (e.key) {
+      case 'ArrowDown':
+        e.preventDefault()
+        const nextIndex = (index + 1) % menuItems.length
+        menuItems[nextIndex]?.focus()
+        break
+      case 'ArrowUp':
+        e.preventDefault()
+        const prevIndex = (index - 1 + menuItems.length) % menuItems.length
+        menuItems[prevIndex]?.focus()
+        break
+      case 'Home':
+        e.preventDefault()
+        menuItems[0]?.focus()
+        break
+      case 'End':
+        e.preventDefault()
+        menuItems[menuItems.length - 1]?.focus()
+        break
+    }
+  }
+
+  if (!isOpen) return null
+
+  return (
+    <>
+      {/* Backdrop */}
+      <div 
+        className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 md:hidden"
+        aria-hidden="true"
+      />
+      
+      {/* Mobile Menu */}
+      <div
+        ref={menuRef}
+        className={`
+          fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-slate-900 shadow-2xl z-50 md:hidden
+          transform transition-transform duration-300 ease-in-out
+          ${isOpen ? 'translate-x-0' : 'translate-x-full'}
+        `}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Mobile navigation menu"
+      >
+        {/* Menu Header */}
+        <div className="flex items-center justify-between p-4 border-b border-slate-700">
+          <h2 className="text-lg font-semibold text-white">Menu</h2>
+          <button
+            onClick={onClose}
+            className="p-2 rounded-md text-slate-400 hover:text-white hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+            aria-label="Close menu"
+          >
+            <svg
+              className="h-6 w-6"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              aria-hidden="true"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          </button>
+        </div>
+
+        {/* Menu Items */}
+        <nav className="flex-1 px-4 py-6" role="navigation">
+          <ul className="space-y-2">
+            {navItems.map(({ id, label, href }, index) => {
+              const isExternal = !href.startsWith('#')
+              const isActive = !isExternal && activeSection === id
+              
+              const linkClassName = `
+                block px-4 py-3 rounded-lg text-base font-medium transition-all duration-200
+                focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-slate-900
+                ${isActive
+                  ? 'text-blue-400 bg-blue-500/10 border-l-4 border-blue-400'
+                  : 'text-slate-300 hover:text-white hover:bg-slate-800'
+                }
+              `.trim()
+
+              return (
+                <li key={id}>
+                  {isExternal ? (
+                    <a
+                      ref={index === 0 ? firstLinkRef : undefined}
+                      href={href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={linkClassName}
+                      onKeyDown={(e) => handleKeyDown(e, index)}
+                    >
+                      {label}
+                    </a>
+                  ) : (
+                    <Link
+                      ref={index === 0 ? firstLinkRef : undefined}
+                      href={href}
+                      onClick={(e) => handleLinkClick(e, href)}
+                      onKeyDown={(e) => handleKeyDown(e, index)}
+                      className={linkClassName}
+                      aria-current={isActive ? 'page' : undefined}
+                    >
+                      {label}
+                    </Link>
+                  )}
+                </li>
+              )
+            })}
+          </ul>
+        </nav>
+
+        {/* Menu Footer */}
+        <div className="p-4 border-t border-slate-700">
+          <div className="flex space-x-4">
+            <a
+              href="https://github.com/Dylan66"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-slate-400 hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-slate-900 rounded-md p-1"
+              aria-label="GitHub profile"
+            >
+              <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
+              </svg>
+            </a>
+            <a
+              href="https://www.linkedin.com/in/dylan-wanganga/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-slate-400 hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-slate-900 rounded-md p-1"
+              aria-label="LinkedIn profile"
+            >
+              <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </>
+  )
+}

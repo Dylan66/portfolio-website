@@ -1,0 +1,195 @@
+@import "tailwindcss";
+
+/* Tailwind v4 Theme Configuration */
+@theme {
+  /* Color Palette - Modern Blue Theme */
+  --color-primary-50: #eff6ff;
+  --color-primary-100: #dbeafe;
+  --color-primary-200: #bfdbfe;
+  --color-primary-300: #93c5fd;
+  --color-primary-400: #60a5fa;
+  --color-primary-500: #3b82f6;
+  --color-primary-600: #2563eb;
+  --color-primary-700: #1d4ed8;
+  --color-primary-800: #1e40af;
+  --color-primary-900: #1e3a8a;
+
+  /* Secondary - Emerald */
+  --color-secondary-400: #34d399;
+  --color-secondary-500: #10b981;
+  --color-secondary-600: #059669;
+
+  /* Neutral - Dark Theme */
+  --color-neutral-50: #f8fafc;
+  --color-neutral-100: #f1f5f9;
+  --color-neutral-200: #e2e8f0;
+  --color-neutral-300: #cbd5e1;
+  --color-neutral-400: #94a3b8;
+  --color-neutral-500: #64748b;
+  --color-neutral-600: #475569;
+  --color-neutral-700: #334155;
+  --color-neutral-800: #1e293b;
+  --color-neutral-900: #0f172a;
+
+  /* Font Families */
+  --font-family-sans: var(--font-inter), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-family-mono: var(--font-jetbrains-mono), 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+
+  /* Animations */
+  --animate-wave: wave 2.5s infinite;
+}
+
+/* Additional CSS Custom Properties */
+:root {
+  --font-family-primary: var(--font-inter), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-family-mono: var(--font-jetbrains-mono), 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+}
+
+/* Base styles */
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 4rem;
+  }
+
+  body {
+    font-family: var(--font-family-primary);
+    background-color: var(--color-neutral-900);
+    color: var(--color-neutral-100);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    line-height: 1.2;
+    font-weight: 700;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+/* Component styles */
+@layer components {
+  .nav-backdrop-blur {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  /* Wave animation for hero section */
+  .wave {
+    animation: wave 2.5s infinite;
+    transform-origin: 70% 70%;
+    display: inline-block;
+  }
+
+  @keyframes wave {
+    0% { transform: rotate(0deg); }
+    10% { transform: rotate(14deg); }
+    20% { transform: rotate(-8deg); }
+    30% { transform: rotate(14deg); }
+    40% { transform: rotate(-4deg); }
+    50% { transform: rotate(10deg); }
+    60% { transform: rotate(0deg); }
+    100% { transform: rotate(0deg); }
+  }
+
+  /* Hero text reveal animations */
+  .hero-text-reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+
+  .hero-text-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Scroll indicator animation */
+  @keyframes scroll-indicator {
+    0% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    50% {
+      opacity: 0.5;
+      transform: translateY(8px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-scroll-indicator {
+    animation: scroll-indicator 2s ease-in-out infinite;
+  }
+
+  /* Fade in up animation for project cards */
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-in-up {
+    animation: fade-in-up 0.5s ease-out forwards;
+    opacity: 0;
+  }
+
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    .wave {
+      animation: none;
+    }
+
+    .hero-text-reveal {
+      opacity: 1;
+      transform: translateY(0);
+      transition: none;
+    }
+
+    .animate-bounce,
+    .animate-scroll-indicator,
+    .animate-fade-in-up {
+      animation: none;
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
+/* Utility styles */
+@layer utilities {
+  .focus-visible:focus-visible {
+    outline: 2px solid var(--color-primary-500);
+    outline-offset: 2px;
+  }
+
+  /* Prevent scroll when mobile menu is open */
+  .mobile-menu-open {
+    overflow: hidden;
+  }
+}
