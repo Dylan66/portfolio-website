@@ -40,19 +40,23 @@ export const metadata: Metadata = {
 
 // Dynamic imports for below-the-fold sections with optimized loading states
 const About = dynamicImport(() => import('@/components/sections/About'), {
-  loading: () => <SectionSkeleton background="secondary" />
+  loading: () => <SectionSkeleton background="secondary" />,
+  ssr: false
 })
 
 const Skills = dynamicImport(() => import('@/components/sections/Skills'), {
-  loading: () => <SectionSkeleton background="primary" />
+  loading: () => <SectionSkeleton background="primary" />,
+  ssr: false
 })
 
 const Projects = dynamicImport(() => import('@/components/sections/Projects'), {
-  loading: () => <SectionSkeleton background="secondary" />
+  loading: () => <SectionSkeleton background="secondary" />,
+  ssr: false
 })
 
 const Contact = dynamicImport(() => import('@/components/sections/Contact'), {
-  loading: () => <SectionSkeleton background="primary" />
+  loading: () => <SectionSkeleton background="primary" />,
+  ssr: false
 })
 
 export default function Home() {
