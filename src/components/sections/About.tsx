@@ -1,170 +1,123 @@
 'use client'
 
-import { Section, Grid } from '@/components/layout'
+import { Section } from '@/components/layout'
 import { Card } from '@/components/ui'
 
 export default function About() {
+  const skills = [
+    { category: 'Frontend', items: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS'], icon: '⚛️' },
+    { category: 'Backend', items: ['Python', 'FastAPI', 'Django', 'Node.js'], icon: '⚙️' },
+    { category: 'Database', items: ['PostgreSQL', 'MongoDB', 'Redis'], icon: '🗄️' },
+    { category: 'DevOps', items: ['Docker', 'Kubernetes', 'CI/CD', 'AWS'], icon: '🚀' }
+  ]
+
+  const interests = [
+    { title: 'Gaming & Game Mechanics', description: 'Exploring interactive systems and player engagement patterns', icon: '🎮' },
+    { title: 'Blockchain & Web3', description: 'Decentralized applications and smart contract development', icon: '⛓️' },
+    { title: 'Technical Writing', description: 'Documenting complex systems and sharing knowledge', icon: '✍️' },
+    { title: 'Travel & Exploration', description: 'Discovering new cultures and perspectives', icon: '🌍' }
+  ]
+
   return (
     <Section id="about" padding="lg" background="secondary">
       <div className="max-w-6xl mx-auto">
         <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center text-white mb-4">
           About <span className="text-primary-400">Me</span>
         </h2>
-        <p className="text-center text-neutral-300 mb-12 text-lg max-w-2xl mx-auto">
-          Full Stack Developer crafting scalable solutions with Python and JavaScript
+        <p className="text-center text-neutral-300 mb-12 text-lg max-w-3xl mx-auto">
+          Turning complex problems into elegant solutions through code, collaboration, and continuous learning
         </p>
         
-        <Grid cols={1} responsive={{ md: 2 }} gap="lg" className="items-start">
+        <div className="space-y-8">
+          {/* My Approach */}
           <Card padding="lg" className="bg-neutral-800/50 border-neutral-700 backdrop-blur-sm">
-            <div className="space-y-6">
-              <div>
-                <h3 className="text-2xl font-bold text-white mb-4 flex items-center gap-2">
-                  <span className="text-primary-400 text-2xl">→</span> Hello!
-                </h3>
-                <p className="text-base md:text-lg text-neutral-200 mb-4 leading-relaxed">
-                  I'm <span className="text-primary-400 font-semibold">Dealan Wanganga</span>, a passionate Full Stack Developer 
-                  based in <span className="font-semibold text-white">Nairobi, Kenya</span>. Currently, I'm building innovative 
-                  solutions at <span className="font-semibold text-white">AUM Tech</span>, where I transform ideas into 
-                  scalable applications.
-                </p>
-                <p className="text-base md:text-lg text-neutral-200 leading-relaxed">
-                  With a <span className="font-semibold text-white">BSc in Information Technology</span>, I specialize in 
-                  creating seamless user experiences backed by robust, efficient systems.
+            <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+              <span className="text-3xl">💡</span>
+              <span>My Approach</span>
+            </h3>
+            <div className="grid md:grid-cols-3 gap-6">
+              <div className="space-y-2">
+                <div className="text-primary-400 font-semibold text-lg">User-Centric Design</div>
+                <p className="text-neutral-300 text-sm leading-relaxed">
+                  Every line of code serves a purpose. I prioritize intuitive interfaces and seamless experiences that users actually enjoy.
                 </p>
               </div>
-              
-              <div className="border-t border-neutral-700 pt-6">
-                <h4 className="text-xl font-semibold text-white mb-4 flex items-center gap-2">
-                  <span className="text-primary-400 text-xl">▸</span> Technical Expertise
-                </h4>
-                <div className="space-y-4">
-                  <div>
-                    <p className="text-sm font-semibold text-primary-400 mb-2">Core Technologies</p>
-                    <p className="text-neutral-200 leading-relaxed">
-                      <span className="font-semibold text-white">Python</span> and{" "}
-                      <span className="font-semibold text-white">JavaScript</span> are my primary languages, 
-                      enabling me to build full-stack solutions from database to UI.
-                    </p>
-                  </div>
-                  
-                  <div>
-                    <p className="text-sm font-semibold text-primary-400 mb-2">Frontend Development</p>
-                    <p className="text-neutral-200 leading-relaxed">
-                      Expert in <span className="font-semibold text-white">React, Next.js, and TypeScript</span> for 
-                      building responsive, performant web applications with modern UI/UX patterns.
-                    </p>
-                  </div>
-                  
-                  <div>
-                    <p className="text-sm font-semibold text-primary-400 mb-2">Backend & APIs</p>
-                    <p className="text-neutral-200 leading-relaxed">
-                      Proficient with <span className="font-semibold text-white">FastAPI, Django, and Node.js</span> for 
-                      creating RESTful APIs and microservices architectures.
-                    </p>
-                  </div>
-                  
-                  <div>
-                    <p className="text-sm font-semibold text-primary-400 mb-2">DevOps & Cloud</p>
-                    <p className="text-neutral-200 leading-relaxed">
-                      Experienced with <span className="font-semibold text-white">Docker, Kubernetes, and CI/CD pipelines</span> for 
-                      containerization, orchestration, and automated deployments.
-                    </p>
-                  </div>
-                </div>
+              <div className="space-y-2">
+                <div className="text-primary-400 font-semibold text-lg">Scalable Architecture</div>
+                <p className="text-neutral-300 text-sm leading-relaxed">
+                  Building for today while planning for tomorrow. Clean code, modular design, and performance optimization are non-negotiable.
+                </p>
               </div>
-
-              <div className="border-t border-neutral-700 pt-6">
-                <h4 className="text-xl font-semibold text-white mb-4 flex items-center gap-2">
-                  <span className="text-primary-400 text-xl">★</span> Beyond Code
-                </h4>
-                <div className="grid grid-cols-2 gap-3">
-                  <div className="flex items-start gap-2">
-                    <span className="text-primary-400 text-lg">•</span>
-                    <span className="text-neutral-200 text-sm">Gaming & game mechanics</span>
-                  </div>
-                  <div className="flex items-start gap-2">
-                    <span className="text-primary-400 text-lg">•</span>
-                    <span className="text-neutral-200 text-sm">Technical writing</span>
-                  </div>
-                  <div className="flex items-start gap-2">
-                    <span className="text-primary-400 text-lg">•</span>
-                    <span className="text-neutral-200 text-sm">Travel & exploration</span>
-                  </div>
-                  <div className="flex items-start gap-2">
-                    <span className="text-primary-400 text-lg">•</span>
-                    <span className="text-neutral-200 text-sm">Blockchain & Web3</span>
-                  </div>
-                </div>
+              <div className="space-y-2">
+                <div className="text-primary-400 font-semibold text-lg">Continuous Growth</div>
+                <p className="text-neutral-300 text-sm leading-relaxed">
+                  Technology evolves rapidly. I stay ahead by experimenting with emerging tools and contributing to the developer community.
+                </p>
               </div>
-
-              <blockquote className="p-4 bg-gradient-to-r from-primary-900/30 to-primary-800/20 border-l-4 border-primary-400 italic text-primary-200 rounded-r">
-                "Strive to build things that make a difference!"
-                <footer className="text-sm mt-2 not-italic font-medium text-primary-300">— Dealan</footer>
-              </blockquote>
             </div>
           </Card>
-          
-          <div className="space-y-6">
-            <Card hover className="text-center bg-neutral-800/50 border-neutral-700 backdrop-blur-sm">
-              <div className="relative">
-                <div className="w-48 h-48 bg-gradient-to-br from-primary-500 via-primary-600 to-primary-700 rounded-full mx-auto mb-6 flex items-center justify-center shadow-2xl ring-4 ring-primary-400/20">
-                  <span className="text-white text-5xl font-bold">DW</span>
-                </div>
-                <div className="absolute top-0 right-1/4 w-3 h-3 bg-green-400 rounded-full animate-pulse ring-2 ring-green-400/50"></div>
-              </div>
-              <h3 className="text-2xl font-bold text-white mb-2">Dealan Wanganga</h3>
-              <p className="text-primary-400 font-semibold mb-2">Full Stack Developer</p>
-              <p className="text-sm text-neutral-400 mb-6">
-                <span className="inline-block">AUM Tech</span>
-                <span className="mx-2">•</span>
-                <span className="inline-block">Nairobi, Kenya</span>
-              </p>
-              <div className="flex justify-center gap-4 mb-4">
-                <a 
-                  href="https://github.com/Dylan66" 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="px-4 py-2 bg-neutral-700 hover:bg-primary-600 text-white rounded-lg transition-all duration-300 font-medium text-sm"
-                >
-                  GitHub
-                </a>
-                <a 
-                  href="https://www.linkedin.com/in/dylan-wanganga/" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="px-4 py-2 bg-neutral-700 hover:bg-primary-600 text-white rounded-lg transition-all duration-300 font-medium text-sm"
-                >
-                  LinkedIn
-                </a>
-              </div>
-            </Card>
 
-            <Card padding="lg" className="bg-neutral-800/50 border-neutral-700 backdrop-blur-sm">
-              <h4 className="text-lg font-semibold text-white mb-4 text-center">Quick Stats</h4>
-              <div className="space-y-3">
-                <div className="flex justify-between items-center pb-2 border-b border-neutral-700">
-                  <span className="text-neutral-300 text-sm">Experience</span>
-                  <span className="text-white font-semibold">Professional</span>
+          {/* Technical Skills */}
+          <Card padding="lg" className="bg-neutral-800/50 border-neutral-700 backdrop-blur-sm">
+            <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+              <span className="text-3xl">🛠️</span>
+              <span>Technical Arsenal</span>
+            </h3>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {skills.map((skill) => (
+                <div key={skill.category} className="space-y-3">
+                  <div className="flex items-center gap-2">
+                    <span className="text-2xl">{skill.icon}</span>
+                    <h4 className="text-lg font-semibold text-white">{skill.category}</h4>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {skill.items.map((item) => (
+                      <span
+                        key={item}
+                        className="px-3 py-1 bg-neutral-700/50 text-neutral-200 text-xs rounded-full border border-neutral-600 hover:border-primary-400 hover:text-primary-300 transition-colors"
+                      >
+                        {item}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-                <div className="flex justify-between items-center pb-2 border-b border-neutral-700">
-                  <span className="text-neutral-300 text-sm">Location</span>
-                  <span className="text-white font-semibold">Nairobi, KE</span>
+              ))}
+            </div>
+          </Card>
+
+          {/* Beyond Code */}
+          <Card padding="lg" className="bg-neutral-800/50 border-neutral-700 backdrop-blur-sm">
+            <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+              <span className="text-3xl">🌟</span>
+              <span>Beyond Code</span>
+            </h3>
+            <div className="grid sm:grid-cols-2 gap-6">
+              {interests.map((interest) => (
+                <div key={interest.title} className="flex gap-4 p-4 rounded-lg bg-neutral-900/30 border border-neutral-700/50 hover:border-primary-400/50 transition-colors">
+                  <div className="text-3xl flex-shrink-0">{interest.icon}</div>
+                  <div className="space-y-1">
+                    <h4 className="text-white font-semibold">{interest.title}</h4>
+                    <p className="text-neutral-400 text-sm">{interest.description}</p>
+                  </div>
                 </div>
-                <div className="flex justify-between items-center pb-2 border-b border-neutral-700">
-                  <span className="text-neutral-300 text-sm">Education</span>
-                  <span className="text-white font-semibold">BSc IT</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-neutral-300 text-sm">Availability</span>
-                  <span className="text-green-400 font-semibold flex items-center gap-1">
-                    <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
-                    Open
-                  </span>
-                </div>
-              </div>
-            </Card>
-          </div>
-        </Grid>
+              ))}
+            </div>
+          </Card>
+
+          {/* Philosophy */}
+          <Card padding="lg" className="bg-gradient-to-br from-primary-900/20 to-secondary-900/20 border-primary-400/30 backdrop-blur-sm">
+            <div className="text-center space-y-4">
+              <div className="text-4xl mb-2">💭</div>
+              <blockquote className="text-xl md:text-2xl font-medium text-white italic">
+                "Strive to build things that make a difference"
+              </blockquote>
+              <p className="text-neutral-300 text-sm max-w-2xl mx-auto">
+                Technology is a tool for positive change. Whether it's streamlining workflows, connecting communities, 
+                or solving real-world problems, I'm driven by impact over complexity.
+              </p>
+            </div>
+          </Card>
+        </div>
       </div>
     </Section>
   )
