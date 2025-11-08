@@ -6,7 +6,7 @@ export const portfolioData: PortfolioData = {
     name: "Dealan Wanganga",
     title: "Full Stack Developer",
     description: "Building modern web applications with Python and JavaScript. Focused on creating scalable solutions that make a real impact.",
-    email: "dealan.wanganga@example.com",
+    email: "wanganga97@gmail.com",
     location: "Nairobi, Kenya",
     avatar: {
       src: "/images/dylan.png",
@@ -28,7 +28,7 @@ export const portfolioData: PortfolioData = {
       },
       {
         platform: 'email',
-        url: 'mailto:dealan.wanganga@example.com'
+        url: 'mailto:wanganga97@gmail.com'
       }
     ]
   },
@@ -243,10 +243,10 @@ export const portfolioData: PortfolioData = {
     }
   ],
   contact: {
-    email: 'your.email@example.com',
-    location: 'Your Location',
+    email: 'wanganga97@gmail.com',
+    location: 'Nairobi, Kenya',
     availability: 'available',
     preferred_contact: 'email',
-    timezone: 'UTC-5'
+    timezone: 'EAT (UTC+3)'
   }
 }

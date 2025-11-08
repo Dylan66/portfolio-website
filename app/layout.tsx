@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 import { Inter, JetBrains_Mono } from 'next/font/google'
 import Navigation from '@/components/navigation/Navigation'
+import BackToTop from '@/components/ui/BackToTop'
 import { WebVitals } from './web-vitals'
 import './globals.css'
 
@@ -22,16 +23,16 @@ export const viewport: Viewport = {
 }
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://yourportfolio.com'),
+  metadataBase: new URL('https://dealan.vercel.app'),
   title: {
-    default: 'Professional Portfolio',
-    template: '%s | Professional Portfolio',
+    default: 'Dealan Wanganga - Full Stack Developer',
+    template: '%s | Dealan Wanganga',
   },
-  description: 'A modern, responsive portfolio showcasing professional work and skills',
-  keywords: ['portfolio', 'developer', 'web development', 'react', 'next.js'],
-  authors: [{ name: 'Portfolio Owner' }],
-  creator: 'Portfolio Owner',
-  publisher: 'Portfolio Owner',
+  description: 'Building modern web applications with Python and JavaScript. Focused on creating scalable solutions that make a real impact.',
+  keywords: ['Full Stack Developer', 'Web Development', 'React', 'Next.js', 'Python', 'JavaScript', 'DevOps', 'Kubernetes'],
+  authors: [{ name: 'Dealan Wanganga' }],
+  creator: 'Dealan Wanganga',
+  publisher: 'Dealan Wanganga',
   robots: {
     index: true,
     follow: true,
@@ -46,18 +47,18 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://yourportfolio.com',
-    title: 'Professional Portfolio',
-    description: 'A modern, responsive portfolio showcasing professional work and skills',
-    siteName: 'Professional Portfolio',
+    url: 'https://dealan.vercel.app',
+    title: 'Dealan Wanganga - Full Stack Developer',
+    description: 'Building modern web applications with Python and JavaScript. Focused on creating scalable solutions that make a real impact.',
+    siteName: 'Dealan Wanganga Portfolio',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Professional Portfolio',
-    description: 'A modern, responsive portfolio showcasing professional work and skills',
+    title: 'Dealan Wanganga - Full Stack Developer',
+    description: 'Building modern web applications with Python and JavaScript',
   },
   alternates: {
-    canonical: 'https://yourportfolio.com',
+    canonical: 'https://dealan.vercel.app',
   },
 }
 
@@ -72,6 +73,7 @@ export default function RootLayout({
         <WebVitals />
         <Navigation />
         {children}
+        <BackToTop />
       </body>
     </html>
   )
