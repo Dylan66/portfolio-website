@@ -58,17 +58,17 @@ export default function Projects() {
         </div>
 
         {/* Search Bar */}
-        <div className="mb-8 max-w-2xl mx-auto">
-          <div className="relative">
+        <div className="mb-12 max-w-3xl mx-auto">
+          <div className="relative group">
             <input
               type="text"
-              placeholder="Search by name, description, or technology..."
+              placeholder="Search projects by name, description, or technology..."
               onChange={(e) => handleSearchChange(e.target.value)}
-              className="w-full px-5 py-3.5 pl-12 bg-neutral-800/50 border border-neutral-700 rounded-xl text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all hover:border-neutral-600"
+              className="w-full px-6 py-4 pl-14 bg-neutral-800 border-2 border-neutral-700 rounded-2xl text-white text-lg placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all hover:border-neutral-600 hover:shadow-lg shadow-xl shadow-black/20"
               aria-label="Search projects"
             />
             <svg
-              className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-neutral-400"
+              className="absolute left-5 top-1/2 -translate-y-1/2 w-6 h-6 text-primary-400 group-hover:text-primary-300 transition-colors"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
