@@ -9,7 +9,7 @@ export const portfolioData: PortfolioData = {
     email: "dealan.wanganga@example.com",
     location: "Nairobi, Kenya",
     avatar: {
-      src: "/images/avatar.jpg",
+      src: "/images/dylan.png",
       alt: "Profile picture",
       width: 400,
       height: 400,
@@ -43,7 +43,14 @@ export const portfolioData: PortfolioData = {
         { name: 'Tailwind CSS', category: 'framework', proficiency: 5 },
         { name: 'JavaScript', category: 'language', proficiency: 5 }
       ],
-      images: [],
+      images: [
+        {
+          src: '/images/projects/sahal-medical.png',
+          alt: 'Sahal Medical web application screenshot',
+          width: 800,
+          height: 600
+        }
+      ],
       links: {
         demo: 'https://sahal-web-dylan66s-projects.vercel.app/#home',
         github: 'https://github.com/Dylan66/sahal_web'
@@ -63,7 +70,14 @@ export const portfolioData: PortfolioData = {
         { name: 'Dashboard', category: 'tool', proficiency: 4 },
         { name: 'Analytics', category: 'tool', proficiency: 4 }
       ],
-      images: [],
+      images: [
+        {
+          src: '/images/projects/period-relief.png',
+          alt: 'Period Relief Project dashboard screenshot',
+          width: 800,
+          height: 600
+        }
+      ],
       links: {
         demo: 'https://pp-relief-platform-cg1m.vercel.app/',
         github: 'https://github.com/Dylan66/PP-Relief-platform'

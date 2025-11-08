@@ -142,6 +142,23 @@
     animation: scroll-indicator 2s ease-in-out infinite;
   }
 
+  /* Fade in up animation for project cards */
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-in-up {
+    animation: fade-in-up 0.5s ease-out forwards;
+    opacity: 0;
+  }
+
   /* Reduced motion support */
   @media (prefers-reduced-motion: reduce) {
     .wave {
@@ -155,8 +172,11 @@
     }
 
     .animate-bounce,
-    .animate-scroll-indicator {
+    .animate-scroll-indicator,
+    .animate-fade-in-up {
       animation: none;
+      opacity: 1;
+      transform: none;
     }
   }
 }
