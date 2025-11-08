@@ -10,8 +10,6 @@ const nextConfig = {
   // Experimental features for better performance
   experimental: {
     optimizePackageImports: ['react-icons'],
-    // Enable optimized CSS loading
-    optimizeCss: true,
   },
   
   // Image optimization configuration
