@@ -29,3 +29,4 @@ Server/node_modules
 Server/config.js
 .next/cache/webpack/client-development/index.pack.gz
 .next/cache/webpack/client-development/0.pack.gz
+.next/trace
