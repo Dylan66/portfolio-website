@@ -66,7 +66,7 @@ export default function Projects() {
   )
 
   return (
-    <Section id="projects" padding="lg" background="secondary">
+    <Section id="projects" padding="sm" background="secondary">
       <div className="max-w-7xl mx-auto">
         <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center text-white mb-4">
           Featured <span className="text-primary-400">Projects</span>
