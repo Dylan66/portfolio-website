@@ -1,5 +1,1 @@
-<<<<<<< HEAD
-self.__REACT_LOADABLE_MANIFEST="{}"
-=======
 self.__REACT_LOADABLE_MANIFEST="{\"src\\\\components\\\\sections\\\\Hero.tsx -> @/components/ui/ParticleBackground\":{\"id\":\"src\\\\components\\\\sections\\\\Hero.tsx -> @/components/ui/ParticleBackground\",\"files\":[]}}"
->>>>>>> version2
