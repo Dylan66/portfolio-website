@@ -145,19 +145,10 @@ export default function Skills() {
           ))}
         </Grid>
         
-        <div className="mt-12">
-          <Card padding="lg" className="max-w-3xl mx-auto bg-neutral-800/50 border-neutral-700 backdrop-blur-sm">
-            <h3 className="text-2xl font-bold text-white mb-4 flex items-center gap-3">
-              <span className="text-3xl">⛓️</span>
-              <span>Exploring New Frontiers</span>
-            </h3>
-            <p className="text-neutral-300 leading-relaxed">
-              Beyond my core expertise, I actively explore <span className="text-primary-400 font-semibold">blockchain development</span> and 
-              <span className="text-primary-400 font-semibold"> smart contracts</span>, staying curious about emerging technologies 
-              like Web3, DeFi, and decentralized applications. This continuous learning mindset keeps me adaptable and ready 
-              to tackle tomorrow's challenges.
-            </p>
-          </Card>
+        <div className="mt-8 text-center">
+          <p className="text-neutral-400 text-sm">
+            Also exploring <span className="text-primary-400 font-medium">blockchain development</span> and <span className="text-primary-400 font-medium">smart contracts</span> as a hobby
+          </p>
         </div>
       </div>
     </Section>
